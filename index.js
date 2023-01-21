@@ -33,6 +33,8 @@ const input = document.getElementById('message');
 const chat = document.getElementById('chat');
 const startButton = document.getElementById('signIn');
 
+const meredith = document.getElementById("pMeredith");
+
 let chatListener = null;
 
 async function main() {
@@ -151,5 +153,20 @@ async function main() {
       });
     });
   }
+
+  meredith.onclick = async () => {
+    // Get a reference to the user's document in the userData collection
+    const userRef = doc(db, 'userData', auth.currentUser.uid);
+    
+    // If they RSVP'd yes, save a document with attending: true
+    try{
+      await setDoc(userRef, {
+        lastClick: "Meredith",
+        time: Date.now()
+      });
+    }catch (e){
+      console.error(e);
+    }
+  };
 }
 main();
