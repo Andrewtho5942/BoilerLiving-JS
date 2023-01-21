@@ -6,7 +6,7 @@ import {
   getAuth,
   EmailAuthProvider,
   signOut,
-  onAuthStateChanged
+  onAuthStateChanged,
 } from 'firebase/auth';
 
 import {
@@ -52,6 +52,7 @@ const honors = document.getElementById("pHonors");
 const owen = document.getElementById("pOwen");
 const shreve = document.getElementById("pShreve");
 
+
 let chatListener = null;
  
 async function main() {
@@ -93,7 +94,7 @@ async function main() {
     },
   };
   const ui = new firebaseui.auth.AuthUI(auth);
-  
+
   //link testing
   console.log('open');
   document.getElementById('link').onclick = function () {
@@ -137,6 +138,17 @@ async function main() {
     return false;
   });
 
+  function getTime(timestamp) {
+    //timestamp should be int
+    var jsTime = new Date(timestamp);
+    var hours = '' + jsTime.getHours();
+    hours = hours.padStart(2, '0');
+    var minutes = '' + jsTime.getMinutes();
+    minutes = minutes.padStart(2, '0');
+    var seconds = '' + jsTime.getSeconds();
+    seconds = seconds.padStart(2, '0');
+    return '' + hours + ':' + minutes + ':' + seconds;
+  }
 
   function subscribeChat() {
     // Create query for messages
@@ -148,7 +160,12 @@ async function main() {
       snaps.forEach((doc) => {
         // Create an HTML entry for each document and add it to the chat
         const entry = document.createElement('p');
-        entry.textContent = doc.data().name + ': ' + doc.data().text;
+        entry.textContent =
+          getTime(doc.data().timestamp) +
+          ' ' +
+          doc.data().name +
+          ': ' +
+          doc.data().text;
         chat.appendChild(entry);
       });
     });
@@ -169,5 +186,6 @@ meredith.onclick = async () => {
     console.error(e);
   }
 };
+
 }
 main();
