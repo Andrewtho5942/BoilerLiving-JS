@@ -90,5 +90,27 @@ form.addEventListener('submit', async (e) => {
   // Return false to avoid redirect
   return false;
 });
+
+// Listen to the current Auth state
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    startRsvpButton.textContent = 'LOGOUT';
+    // Show guestbook to logged-in users
+    guestbookContainer.style.display = 'block';
+    //Subscribe to guestbook collection
+    subscribeGuestbook();
+    //Subscribe to the user's RSVP
+    subscribeCurrentRSVP(user);
+  } else {
+    startRsvpButton.textContent = 'RSVP';
+    // Hide guestbook for non-logged-in users
+    guestbookContainer.style.display = 'none';
+    //Unsubscribe to guestbook collection
+    unsubscribeGuestbook();
+    //Unsubscribe to the user's RSVP
+    unsubscribeCurrentRSVP();
+  }
+});
+
 }
 main();
