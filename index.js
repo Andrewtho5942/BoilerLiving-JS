@@ -157,13 +157,13 @@ async function main() {
 
 //listen to clicks on any location in the grid
 meredith.onclick = async () => {
-  // Get a reference to the user's document in the attendees collection
-  const userRef = doc(db, 'attendees', auth.currentUser.uid);
+  // Get a reference to the user's document in the userData collection
+  const userRef = doc(db, 'userData', auth.currentUser.uid);
   
   // If they RSVP'd yes, save a document with attending: true
   try{
     await setDoc(userRef, {
-      attending: false
+      lastClick: "Meredith"
     });
   }catch (e){
     console.error(e);
