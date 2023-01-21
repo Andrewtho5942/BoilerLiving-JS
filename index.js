@@ -2,12 +2,14 @@
 import './style.css';
 
 import { initializeApp } from 'firebase/app';
+
 import {
   getAuth,
   EmailAuthProvider,
   signOut,
   onAuthStateChanged
 } from 'firebase/auth';
+
 
 import {
   getFirestore,
@@ -51,23 +53,25 @@ async function main(){
     };
     
 
+
   initializeApp(firebaseConfig);
   auth = getAuth();
   db = getFirestore();
 
-// Firebase UI Config
+  // Firebase UI Config
 
-const uiConfig = {
-  credentialHelper: firebaseui.auth.CredentialHelper.NONE,
-  signInOptions: [
-    // Email / Password Provider.
-    EmailAuthProvider.PROVIDER_ID,
-  ],
-  callbacks: {
-    signInSuccessWithAuthResult: function (authResult, redirectUrl) {
-      // Handle sign-in.
-      // Return false to avoid redirect.
-      return false;
+  const uiConfig = {
+    credentialHelper: firebaseui.auth.CredentialHelper.NONE,
+    signInOptions: [
+      // Email / Password Provider.
+      EmailAuthProvider.PROVIDER_ID,
+    ],
+    callbacks: {
+      signInSuccessWithAuthResult: function (authResult, redirectUrl) {
+        // Handle sign-in.
+        // Return false to avoid redirect.
+        return false;
+      },
     },
   },
 };
