@@ -75,9 +75,7 @@ async function main() {
     },
   };
   const ui = new firebaseui.auth.AuthUI(auth);
-
-  ui.start('#firebaseui-auth-container', uiConfig);
-
+  
   //link testing
   console.log('open');
   document.getElementById('link').onclick = function () {
