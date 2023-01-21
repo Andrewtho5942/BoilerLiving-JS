@@ -27,6 +27,7 @@ const form = document.getElementById('leave-message');
 const input = document.getElementById('message');
 
 async function main() {
+  console.log('main');
   // Firebase config
   const firebaseConfig = {
     apiKey: 'AIzaSyC05K7n9cStnFrTQ06AOpQt7cAHyLZOf3Q',
@@ -76,6 +77,7 @@ async function main() {
   // Listen to the form submission
   form.addEventListener('submit', async (e) => {
     // Prevent the default form redirect
+    console.log('form add event listener');
     e.preventDefault();
     // Write a new message to the database collection "guestbook"
     addDoc(collection(db, 'guestbook'), {
