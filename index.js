@@ -53,9 +53,8 @@ const owen = document.getElementById("pOwen");
 const shreve = document.getElementById("pShreve");
 
 let chatListener = null;
-
+ 
 async function main() {
-  console.log('main');
   // Firebase config
   const firebaseConfig = {
     apiKey: 'AIzaSyC05K7n9cStnFrTQ06AOpQt7cAHyLZOf3Q',
@@ -73,10 +72,10 @@ async function main() {
     measurementId: 'G-CT32RLKFEJ',
   };
 
-  initializeApp(firebaseConfig);
+ 
   auth = getAuth();
   db = getFirestore();
-
+  initializeApp(firebaseConfig);
   // Firebase UI Config
 
   const uiConfig = {
@@ -163,17 +162,12 @@ meredith.onclick = async () => {
   // If they RSVP'd yes, save a document with attending: true
   try{
     await setDoc(userRef, {
-      lastClick: "Meredith"
+      lastClick: "Meredith",
+      time: Date.now()
     });
   }catch (e){
     console.error(e);
   }
 };
-
-
-
-
-
-
 }
 main();
