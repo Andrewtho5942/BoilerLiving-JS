@@ -14,6 +14,14 @@ background-color:gold;
 text-align:center   
 }
 
+#signIn{
+  left: 1500px; 
+  top:910px;
+  width:150px;
+  background-color: rgb(30,30,30);
+  position: absolute
+}
+
 #mainBody {
     width:240%;
     height:1480px;
@@ -250,7 +258,7 @@ padding: 0px 15px;
 
 #firebaseui-auth-container{
   left: 1200px; 
-  top:930px;
+  top:980px;
   padding-left: 80px;
   padding-right: 80px;
   width:600px;
