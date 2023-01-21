@@ -53,12 +53,8 @@ const owen = document.getElementById("pOwen");
 const shreve = document.getElementById("pShreve");
 
 
-
-const disabledLink = '#';
-const abledLink = 'https://js-kddsga.stackblitz.io';
-
 let chatListener = null;
-
+ 
 async function main() {
   // Firebase config
   const firebaseConfig = {
@@ -115,24 +111,13 @@ async function main() {
     }
   });
 
-  var images = document.getElementsByClassName('locImg');
   onAuthStateChanged(auth, (user) => {
     if (user) {
       startButton.textContent = 'LOGOUT';
-      console.log('logged in');
-      images = document.getElementsByClassName('locImg');
-      [].forEach.call(images, function (image) {
-        console.log(abledLink);
-        image.href = abledLink;
-      });
       //Subscribe to chat collection
       subscribeChat();
     } else {
       startButton.textContent = 'Sign In To Chat';
-      images = document.getElementsByClassName('locImg');
-      [].forEach.call(images, function (image) {
-        image.href = disabledLink;
-      });
     }
   });
 
