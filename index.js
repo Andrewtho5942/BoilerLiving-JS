@@ -109,7 +109,7 @@ async function main() {
     // Prevent the default form redirect
     e.preventDefault();
     // Write a new message to the database collection "guestbook"
-    addDoc(collection(db, 'guestbook'), {
+    addDoc(collection(db, 'chat'), {
       text: input.value,
       timestamp: Date.now(),
       name: auth.currentUser.displayName,
