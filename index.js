@@ -2,7 +2,14 @@
 import './style.css';
 
 import { initializeApp } from 'firebase/app';
-import { getAuth, EmailAuthProvider } from 'firebase/auth';
+
+import {
+  getAuth,
+  EmailAuthProvider,
+  signOut,
+  onAuthStateChanged
+} from 'firebase/auth';
+
 
 import {
   getFirestore,
@@ -23,27 +30,29 @@ import * as firebaseui from 'firebaseui';
 
 let db, auth;
 
-const form = document.getElementById('leave-message');
+const startButton = document.getElementById('signIn');
+
+const form = document.getElementById('send-message');
 const input = document.getElementById('message');
+const chat = document.getElementById('chat');
 
-async function main() {
-  console.log('main');
-  // Firebase config
-  const firebaseConfig = {
-    apiKey: 'AIzaSyC05K7n9cStnFrTQ06AOpQt7cAHyLZOf3Q',
 
-    authDomain: 'boilerliving.firebaseapp.com',
+let chatListener = null;
 
-    projectId: 'boilerliving',
+async function main(){
 
-    storageBucket: 'boilerliving.appspot.com',
+    // Firebase config
+    const firebaseConfig = {
+      apiKey: "AIzaSyC05K7n9cStnFrTQ06AOpQt7cAHyLZOf3Q",
+      authDomain: "boilerliving.firebaseapp.com",
+      projectId: "boilerliving",
+      storageBucket: "boilerliving.appspot.com",
+      messagingSenderId: "1020361690137",
+      appId: "1:1020361690137:web:75d2525326961bd9c22e88",
+      measurementId: "G-CT32RLKFEJ"
+    };
+    
 
-    messagingSenderId: '1020361690137',
-
-    appId: '1:1020361690137:web:75d2525326961bd9c22e88',
-
-    measurementId: 'G-CT32RLKFEJ',
-  };
 
   initializeApp(firebaseConfig);
   auth = getAuth();
@@ -64,32 +73,67 @@ async function main() {
         return false;
       },
     },
-  };
-  const ui = new firebaseui.auth.AuthUI(auth);
+  },
+};
+const ui = new firebaseui.auth.AuthUI(auth);
 
-  ui.start('#firebaseui-auth-container', uiConfig);
-
-  console.log('open');
-  document.getElementById('link').onclick = function () {
-    console.log('link clicked');
-  };
-
-  // Listen to the form submission
-  form.addEventListener('submit', async (e) => {
-    // Prevent the default form redirect
-    console.log('form add event listener');
-    e.preventDefault();
-    // Write a new message to the database collection "guestbook"
-    addDoc(collection(db, 'guestbook'), {
-      text: input.value,
-      timestamp: Date.now(),
-      name: auth.currentUser.displayName,
-      userId: auth.currentUser.uid,
-    });
-    // clear message input field
-    input.value = '';
-    // Return false to avoid redirect
-    return false;
+  //open sign in UI / sign out
+  startButton.addEventListener('click', () => {
+    if (auth.currentUser) {
+      //user is signed in -> allows user to sign out
+      signOut(auth);
+    } else {
+      //no user is signed in -> allows user to sign in
+      ui.start('#firebaseui-auth-container', uiConfig);
+    }
   });
+
+// Listen to the current Auth state
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    startButton.textContent = 'LOGOUT';
+    //Subscribe to chat collection
+    subscribeChat();
+  } else {
+    startButton.textContent = 'Sign In To Chat';
+  }
+});
+
+// Listen to the form submission
+form.addEventListener('submit', async (e) => {
+  // Prevent the default form redirect
+  e.preventDefault();
+  // Write a new message to the database collection "chat"
+  addDoc(collection(db, 'chat'), {
+    text: input.value,
+    timestamp: Date.now(),
+    name: auth.currentUser.displayName,
+    userId: auth.currentUser.uid,
+  });
+  // clear message input field
+  input.value = '';
+  // Return false to avoid redirect
+  return false;
+});
+
+ // Listen to chat updates
+ function subscribeChat() {
+  // Create query for messages
+  const q = query(collection(db, 'chat'), orderBy('timestamp', 'desc'));
+  onSnapshot(q, (snaps) => {
+    // Reset page
+    chat.innerHTML = '';
+    // Loop through documents in database
+    snaps.forEach((doc) => {
+      // Create an HTML entry for each document and add it to the chat
+      const entry = document.createElement('p');
+      entry.textContent = doc.data().name + ': ' + doc.data().text;
+      chat.appendChild(entry);
+    });
+  });
+
+
+  
+}
 }
 main();
