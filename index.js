@@ -33,6 +33,25 @@ const input = document.getElementById('message');
 const chat = document.getElementById('chat');
 const startButton = document.getElementById('signIn');
 
+//grid location elements
+const meredith = document.getElementById("pMeredith");
+const meredithSouth = document.getElementById("pMeredithSouth");
+const windsor = document.getElementById("pWindsor");
+const cary = document.getElementById("pCary");
+const mccutcheon = document.getElementById("pMccutcheon");
+const tarkington = document.getElementById("pTarkington");
+const wiley = document.getElementById("pWiley");
+const earheart = document.getElementById("pEarheart");
+const towers = document.getElementById("ptowers");
+const freida = document.getElementById("pFreida");
+const winifred = document.getElementById("pWinifred");
+const harrison = document.getElementById("pHarrison");
+const hawkins = document.getElementById("pHawkins");
+const hillenbrand = document.getElementById("pHillenbrand");
+const honors = document.getElementById("pHonors");
+const owen = document.getElementById("pOwen");
+const shreve = document.getElementById("pShreve");
+
 let chatListener = null;
 
 async function main() {
@@ -135,5 +154,26 @@ async function main() {
       });
     });
 }
+
+//listen to clicks on any location in the grid
+meredith.onclick = async () => {
+  // Get a reference to the user's document in the attendees collection
+  const userRef = doc(db, 'attendees', auth.currentUser.uid);
+  
+  // If they RSVP'd yes, save a document with attending: true
+  try{
+    await setDoc(userRef, {
+      attending: false
+    });
+  }catch (e){
+    console.error(e);
+  }
+};
+
+
+
+
+
+
 }
 main();
