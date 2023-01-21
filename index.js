@@ -2,7 +2,12 @@
 import './style.css';
 
 import { initializeApp } from 'firebase/app';
-import { getAuth, EmailAuthProvider } from 'firebase/auth';
+import {
+  getAuth,
+  EmailAuthProvider,
+  signOut,
+  onAuthStateChanged
+} from 'firebase/auth';
 
 import {
   getFirestore,
@@ -23,8 +28,12 @@ import * as firebaseui from 'firebaseui';
 
 let db, auth;
 
-const form = document.getElementById('leave-message');
+const form = document.getElementById('send-message');
 const input = document.getElementById('message');
+const chat = document.getElementById('chat');
+const startButton = document.getElementById('signIn');
+
+let chatListener = null;
 
 async function main() {
   console.log('main');
@@ -69,15 +78,35 @@ async function main() {
 
   ui.start('#firebaseui-auth-container', uiConfig);
 
+  //link testing
   console.log('open');
   document.getElementById('link').onclick = function () {
     console.log('link clicked');
   };
 
+  startButton.addEventListener('click', () => {
+    if (auth.currentUser) {
+      //user is signed in -> allows user to sign out
+      signOut(auth);
+    } else {
+      //no user is signed in -> allows user to sign in
+      ui.start('#firebaseui-auth-container', uiConfig);
+    }
+  });
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      startButton.textContent = 'LOGOUT';
+      //Subscribe to chat collection
+      subscribeChat();
+    } else {
+      startButton.textContent = 'Sign In To Chat';
+    }
+  });
+
   // Listen to the form submission
   form.addEventListener('submit', async (e) => {
     // Prevent the default form redirect
-    console.log('form add event listener');
     e.preventDefault();
     // Write a new message to the database collection "guestbook"
     addDoc(collection(db, 'guestbook'), {
@@ -91,5 +120,22 @@ async function main() {
     // Return false to avoid redirect
     return false;
   });
+
+
+  function subscribeChat() {
+    // Create query for messages
+    const q = query(collection(db, 'chat'), orderBy('timestamp', 'desc'));
+    onSnapshot(q, (snaps) => {
+      // Reset page
+      chat.innerHTML = '';
+      // Loop through documents in database
+      snaps.forEach((doc) => {
+        // Create an HTML entry for each document and add it to the chat
+        const entry = document.createElement('p');
+        entry.textContent = doc.data().name + ': ' + doc.data().text;
+        chat.appendChild(entry);
+      });
+    });
+}
 }
 main();
