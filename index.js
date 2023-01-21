@@ -35,6 +35,9 @@ const startButton = document.getElementById('signIn');
 
 let chatListener = null;
 
+const disabledLink = '#';
+const abledLink = 'https://js-kddsga.stackblitz.io';
+
 async function main() {
   console.log('main');
   // Firebase config
@@ -92,13 +95,24 @@ async function main() {
     }
   });
 
+  var images = document.getElementsByClassName('locImg');
   onAuthStateChanged(auth, (user) => {
     if (user) {
       startButton.textContent = 'LOGOUT';
+      console.log('logged in');
+      images = document.getElementsByClassName('locImg');
+      [].forEach.call(images, function (image) {
+        console.log(abledLink);
+        image.href = abledLink;
+      });
       //Subscribe to chat collection
       subscribeChat();
     } else {
       startButton.textContent = 'Sign In To Chat';
+      images = document.getElementsByClassName('locImg');
+      [].forEach.call(images, function (image) {
+        image.href = disabledLink;
+      });
     }
   });
 
