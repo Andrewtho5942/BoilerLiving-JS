@@ -1,5 +1,5 @@
-.star{
-  height:80;
+.star {
+  height:26px;
 }
 
 #commentBody {
@@ -175,19 +175,19 @@ body {
 
 #hawkins {
   left: 32px;
-  top: 1170px;
+  top: 1172px;
   position: absolute;
 }
 
 #hillenbrand {
   left: 432px;
-  top: 1170px;
+  top: 1172px;
   position: absolute;
 }
 
 #honors {
   left: 832px;
-  top: 1170px;
+  top: 1172px;
   position: absolute;
 }
 
