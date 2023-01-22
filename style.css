@@ -4,7 +4,7 @@
 
 #commentBody {
   width: 930px;
-  height: 700px;
+  height: 760px;
   border-radius: 4px;
   background-color: rgb(230, 230, 230);
   border: 2px solid black;
@@ -14,7 +14,7 @@
 }
 #comments {
   width: 910px;
-  height: 678px;
+  height: 740px;
   border-radius: 6px;
   background-color: white;
   border: 4px solid rgb(245, 245, 245);
@@ -116,33 +116,33 @@ body {
 }
 #cary {
   left: 32px;
-  top: 477px;
+  top: 479px;
   position: absolute;
 }
 #mccutcheon {
   left: 432px;
-  top: 477px;
+  top: 479px;
   position: absolute;
 }
 #tarkington {
   left: 832px;
-  top: 477px;
+  top: 479px;
   position: absolute;
 }
 #meredith {
   left: 32px;
-  top: 246px;
+  top: 248px;
   position: absolute;
 }
 #meredith-s {
   left: 432px;
-  top: 246px;
+  top: 248px;
   position: absolute;
 }
 
 #windsor {
   left: 832px;
-  top: 246px;
+  top: 248px;
   position: absolute;
 }
 #winifred {
