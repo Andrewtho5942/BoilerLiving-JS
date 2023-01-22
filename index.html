@@ -21,6 +21,7 @@
 />
 </head>
 <body>
+  <div>
     <section id="mainBody">
 
       <h1 class="heading"> Purdue Housing Locations </h1>
@@ -183,8 +184,118 @@
    </form>
    <button id="signIn" >Sign In To Chat</button>
    <section id="firebaseui-auth-container"></section>
+
+  </div>
+
+   <!-- start location page -->
+
+   
+
+   <div id="bottom">
+    <l>
+   <title class="location-name">Location</title>
+
+  
+    <p class="location-name">Location Name</p>
   
 
-  <p id="test">Testing text</p>
+  <img
+    src="https://wonderfulengineering.com/wp-content/uploads/2014/01/building-wallpaper.jpeg"
+    alt="No wiley image"
+    width="250"
+    height="120"
+  />
+  <br />
+
+  <img
+    id="location-image"
+    src="https://i.ibb.co/r7Sw159/0-Stars.jpg"
+    width="150"
+  />
+  <br />
+  <label for="net-rating-tag">Net Rating:</label>
+  <label for="net-rating-double">0.0/5</label>
+  <br />
+  <label for="Location Rating-tag">Location:</label>
+  <label for="location-rating-double">0.0/5</label>
+  <br />
+  <label for="Quality-rating-tag">Quality:</label>
+  <label for="quality-rating-double">0.0/5</label>
+  <br />
+  <label for="amenities-rating-tag">Amenties:</label>
+  <label for="amenities-rating-double">0.0/5</label>
+  <br />
+  <label for="community-rating-tag">Community:</label>
+  <label for="community-rating-double">0.0/5</label>
+  <br /><br /><br />
+
+  <label for="reviews-header">Reviews</label>
+  <br /><br /><br />
+
+  <label for="add-a-review-header">Leave A Review:</label>
+  <br />
+  <Form name="Form1" method="" action="">
+  <textarea id="review-message"  maxlength="200" rows="10" cols="25"> </textarea>
+</Form>  
+  Rate the following categories on a 5 point scale:
+  <br/>
+
+
+  <script>
+  function handleChange(input) {
+  if (input.value < 1) input.value = 1;
+  if (input.value > 5) input.value = 5;
+  }
+  </script>
+
+
+  <!-- location score -->
+  <label for="location-score">Location:</label>
+  <input type="number" id="location-score" onchange="handleChange(this);" min=1 max=5 style="height:15px; width:30px;" maxlength="3"/> <br>
+
+
+  <!-- quality score -->
+  <label for="quality-score">Quality:</label>
+  <input type="number" id="quality-score" onchange="handleChange(this);" min=1 max=5 style="height:15px; width:30px;" maxlength="3"/> <br>
+
+
+  <!-- amenities score -->
+  <label for="amenities-score">Amenities:</label>
+  <input type="number" id="amenities-score" onchange="handleChange(this);" min=1 max=5 style="height:15px; width:30px;" maxlength="3"/> <br>
+
+
+  <!-- community score -->
+  <label for="community-score">Community:</label>
+  <input type="number" id="community-score" onchange="handleChange(this);" min=1 max=5 style="height:15px; width:30px;" maxlength="3"/> <br>
+
+
+  <!-- submit button -->
+  <button id="submit-button">Submit Review</button>
+</l>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+    <style>
+      { 
+        padding: 20px;
+        background: blue;
+      }
+    </style>
+
+   <button type="button" class="toggle-btn">Toggle</button>
+    <p>Lorem Ipsum is simply dummy text.</p>
+    <script>
+      $(document).ready(function() {
+          // Display alert message after toggle paragraphs
+          $(".toggle-btn").click(function() {
+              $("l").toggle(1000, function() {
+                  // Code to be executed
+                  //alert("The toggle effect is completed.");
+                });
+            });
+        });
+    </script>
+
+
 </body>
 </html>
