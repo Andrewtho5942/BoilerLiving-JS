@@ -383,3 +383,16 @@ button {
   height: 40px;
   background-color: rgba(0, 0, 0, 1);
 }
+
+#map-image {
+  left: 510px;
+  top: 1950px;
+  width: 442px;
+  height: 325px;
+  position: absolute;
+
+
+
+
+}
+
