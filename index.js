@@ -506,6 +506,7 @@ async function main() {
 
   var imageImage;
   var locationTitle;
+  var mapImage;
   //listen to clicks on any location in the grid
   meredith.addEventListener('click', () => {
     locPage = 'meredith';
