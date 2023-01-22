@@ -28,7 +28,7 @@ import * as firebaseui from 'firebaseui';
 
 let db, auth;
 
-let locPage = "blank";
+let locPage = 'blank';
 
 const form = document.getElementById('send-message');
 const input = document.getElementById('message');
@@ -36,27 +36,24 @@ const chat = document.getElementById('chat');
 const startButton = document.getElementById('signIn');
 const bottom = document.getElementById('bottom');
 
-
 //grid location elements
-const meredith = document.getElementById("pmeredith");
-const meredithsouth = document.getElementById("pmeredithSouth");
-const windsor = document.getElementById("pwindsor");
-const cary = document.getElementById("pcary");
-const mccutcheon = document.getElementById("pmccutcheon");
-const tarkington = document.getElementById("ptarkington");
-const wiley = document.getElementById("pwiley");
-const earheart = document.getElementById("pearheart");
-const towers = document.getElementById("ptowers");
-const freida = document.getElementById("pfreida");
-const winifred = document.getElementById("pwinifred");
-const harrison = document.getElementById("pharrison");
-const hawkins = document.getElementById("phawkins");
-const hillenbrand = document.getElementById("phillenbrand");
-const honors = document.getElementById("phonors");
-const owen = document.getElementById("powen");
-const shreve = document.getElementById("pshreve");
-
-
+const meredith = document.getElementById('pmeredith');
+const meredithsouth = document.getElementById('pmeredithsouth');
+const windsor = document.getElementById('pwindsor');
+const cary = document.getElementById('pcary');
+const mccutcheon = document.getElementById('pmccutcheon');
+const tarkington = document.getElementById('ptarkington');
+const wiley = document.getElementById('pwiley');
+const earheart = document.getElementById('pearheart');
+const towers = document.getElementById('ptowers');
+const freida = document.getElementById('pfreida');
+const winifred = document.getElementById('pwinifred');
+const harrison = document.getElementById('pharrison');
+const hawkins = document.getElementById('phawkins');
+const hillenbrand = document.getElementById('phillenbrand');
+const honors = document.getElementById('phonors');
+const owen = document.getElementById('powen');
+const shreve = document.getElementById('pshreve');
 
 const disabledLink = '#';
 const abledLink = 'https://js-kddsga.stackblitz.io';
@@ -66,32 +63,26 @@ let chatListener = null;
 async function main() {
   // Firebase config
   const firebaseConfig = {
+    apiKey: 'AIzaSyAPk7O__mtzcAuI74ZXvlkHaCoLB-TSkzA',
 
-    apiKey: "AIzaSyAPk7O__mtzcAuI74ZXvlkHaCoLB-TSkzA",
-  
-    authDomain: "boilerlivingx.firebaseapp.com",
-  
-    projectId: "boilerlivingx",
-  
-    storageBucket: "boilerlivingx.appspot.com",
-  
-    messagingSenderId: "952766726355",
-  
-    appId: "1:952766726355:web:de37c13c620855cc349426",
-  
-    measurementId: "G-6HKFCTNRL7"
-  
+    authDomain: 'boilerlivingx.firebaseapp.com',
+
+    projectId: 'boilerlivingx',
+
+    storageBucket: 'boilerlivingx.appspot.com',
+
+    messagingSenderId: '952766726355',
+
+    appId: '1:952766726355:web:de37c13c620855cc349426',
+
+    measurementId: 'G-6HKFCTNRL7',
   };
 
-  
-  
   initializeApp(firebaseConfig);
   auth = getAuth();
   db = getFirestore();
   console.log(auth);
-  
- 
-  
+
   // Firebase UI Config
   const uiConfig = {
     credentialHelper: firebaseui.auth.CredentialHelper.NONE,
@@ -109,13 +100,11 @@ async function main() {
   };
 
   const ui = new firebaseui.auth.AuthUI(auth);
-  
-  bottom.style.display='none';
 
-
+  bottom.style.display = 'none';
 
   startButton.addEventListener('click', () => {
-    console.log("clicked!");
+    console.log('clicked!');
     if (auth.currentUser) {
       //user is signed in -> allows user to sign out
       signOut(auth);
@@ -194,37 +183,43 @@ async function main() {
         chat.appendChild(entry);
       });
     });
-}
+  }
 
-var imageImage;
-var locationTitle;
-//listen to clicks on any location in the grid
-meredith.addEventListener('click', () => {
-  locPage="meredith";
-  bottom.style.display='block';
-  locationTitle = document.getElementById('location-name').innerHTML = "Meredith";
-  imageImage = document.getElementById('image-image').src = "https://www.housing.purdue.edu/images/_hero/meredith-exterior-640x360.jpg";
-});
-meredithsouth.addEventListener('click', () => {
-  locPage="meredithsouth";
-  bottom.style.display='block';
-  locationTitle = document.getElementById('location-name').innerHTML = "Meredith South";
-  imageImage = document.getElementById('image-image').src = "https://www.housing.purdue.edu/images/_hero/meredith-south-exterior-640x360.jpg";
-});
+  var imageImage;
+  var locationTitle;
+  //listen to clicks on any location in the grid
+  meredith.addEventListener('click', () => {
+    locPage = 'meredith';
+    bottom.style.display = 'block';
+    locationTitle = document.getElementById('location-name').innerHTML =
+      'Meredith';
+    imageImage = document.getElementById('image-image').src =
+      'https://www.housing.purdue.edu/images/_hero/meredith-exterior-640x360.jpg';
+  });
+  meredithsouth.addEventListener('click', () => {
+    locPage = 'meredithsouth';
+    bottom.style.display = 'block';
+    locationTitle = document.getElementById('location-name').innerHTML =
+      'Meredith South';
+    imageImage = document.getElementById('image-image').src =
+      'https://www.housing.purdue.edu/images/_hero/meredith-south-exterior-640x360.jpg';
+  });
 
-windsor.addEventListener('click', () => {
-  locPage="windsor";
-  bottom.style.display='block';
-  locationTitle = document.getElementById('location-name').innerHTML = "Windsor";
-  imageImage = document.getElementById('image-image').src = "";
-});
+  windsor.addEventListener('click', () => {
+    locPage = 'windsor';
+    bottom.style.display = 'block';
+    locationTitle = document.getElementById('location-name').innerHTML =
+      'Windsor';
+    imageImage = document.getElementById('image-image').src = '';
+  });
 
-cary.addEventListener('click', () => {
-  locPage="cary";
-  bottom.style.display='block';
-  locationTitle = document.getElementById('location-name').innerHTML = "Cary Quadrangle";
-  imageImage = document.getElementById('image-image').src = "https://www.housing.purdue.edu/images/_hero/caryquad-640x360.jpg";
-});
-
+  cary.addEventListener('click', () => {
+    locPage = 'cary';
+    bottom.style.display = 'block';
+    locationTitle = document.getElementById('location-name').innerHTML =
+      'Cary Quadrangle';
+    imageImage = document.getElementById('image-image').src =
+      'https://www.housing.purdue.edu/images/_hero/caryquad-640x360.jpg';
+  });
 }
 main();
