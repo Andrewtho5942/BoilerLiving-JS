@@ -271,6 +271,19 @@ pageImg.src = imgSource;
 
     console.log(locationScore + " " + qualityScore + " " + amenitiesScore + " " + communityScore + " " + average + ". " + reviewMessage);
 
+    addDoc(collection(db, 'locationData','windsor','reviews'), {
+      reviewMessage:reviewMessage,
+      locationScore:locationScore,
+      qualityScore:qualityScore,
+      communityScore:communityScore,
+      average:average,
+      numReviews:1,
+      timestamp: Date.now(),
+      name: auth.currentUser.displayName,
+      userId: auth.currentUser.uid,
+    });
+
+
     document.getElementById("location-score").innerHTML = "";
     document.getElementById("quality-score").innerHTML = "";
     document.getElementById('amenities-score').innerHTML = "";
