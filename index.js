@@ -221,5 +221,68 @@ async function main() {
     imageImage = document.getElementById('image-image').src =
       'https://www.housing.purdue.edu/images/_hero/caryquad-640x360.jpg';
   });
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  console.log("Ready!");
+}, false);
+
+
+
+//renaming to specific location name
+var locName = 'placeholder';
+var nameLabels = document.getElementsByClassName('location-name');
+[].forEach.call(nameLabels, function (nameLabel) {
+  nameLabel.innerHTML = locName;
+});
+
+//changing the image
+var imgSource = 'https://i.ibb.co/r7Sw159/0-Stars.jpg'; //placeholder
+var pageImg = document.getElementById('location-image');
+pageImg.src = imgSource; 
+//appDiv.innerHTML = `<h1>JS Starter</h1>`;
+
+  var locationScore = 0;
+  var qualityScore = 0;
+  var amenitiesScore = 0;
+  var communityScore = 0;
+  var average = 0;
+  var reviewMessage = "";
+
+  const submit = document.getElementById('submit-button');
+
+  submit.addEventListener('click', () => {
+    reviewMessage = document.getElementById('review-message').value;
+
+    locationScore = +document.getElementById('location-score').value;
+    qualityScore = +document.getElementById('quality-score').value;
+    amenitiesScore = +document.getElementById('amenities-score').value;
+    communityScore = +document.getElementById('community-score').value;
+
+
+    if(locationScore == 0 || qualityScore == 0 || amenitiesScore == 0 || communityScore == 0 || reviewMessage.length == 0) {
+      console.log("no");
+      alert("All boxes must be filled.")
+    } else {
+      average = (locationScore + qualityScore +  amenitiesScore + communityScore) / 4;
+
+    console.log(locationScore + " " + qualityScore + " " + amenitiesScore + " " + communityScore + " " + average + ". " + reviewMessage);
+
+    document.getElementById("location-score").innerHTML = "";
+    document.getElementById("quality-score").innerHTML = "";
+    document.getElementById('amenities-score').innerHTML = "";
+    document.getElementById("community-score").innerHTML = "";
+    document.getElementById("review-message").innerHTML = "";
+    }
+
+
+  
+  });
+
+
+
 }
 main();
