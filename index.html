@@ -1,15 +1,3 @@
-<!--
-<head>
-<meta charset="utf-8" />
-<title>Purdue Housing Info</title>
-</head>
-<img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Cary_Quad_and_Spitzer_Court%2C_Purdue_University.png"/>
-<div id="app"></div>
-<section id="start-header">
-  <h1>Purdue Housing Info</h1>
-  <p>Log in to view your housing options!</p>
--->
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -87,8 +75,8 @@
 
              <div class="grid">
                <a class="locImg">
-                <img src="https://www.housing.purdue.edu/images/_hero/earhart-exterior-statue-640x360.jpg" id="pearheart" width="352" height="170" />
-                <p id=earheart>EARHEART</p>
+                <img src="https://www.housing.purdue.edu/images/_hero/earhart-exterior-statue-640x360.jpg" id="pearhart" width="352" height="170" />
+                <p id=earhart>EARHART</p>
                 <img src="https://i.ibb.co/r7Sw159/0-Stars.jpg" width="150">
                </a>
              </div>
@@ -211,32 +199,29 @@
     width="150"
   />
   <br />
-  <label for="net-rating-tag">Net Rating:</label>
-  <label for="net-rating-double">0.0/5</label>
+  <label class="rating" for="net-rating-tag">Net Rating:</label>
+  <label class="rateNum" id="net-rating" for="net-rating-double">0.0/5</label>
   <br />
-  <label for="Location Rating-tag">Location:</label>
-  <label for="location-rating-double">0.0/5</label>
+  <label class="rating" for="Location Rating-tag">Location:</label>
+  <label class="rateNum" id="location-rating" for="location-rating-double">0.0/5</label>
   <br />
-  <label for="Quality-rating-tag">Quality:</label>
-  <label for="quality-rating-double">0.0/5</label>
+  <label class="rating" for="Quality-rating-tag">Quality:</label>
+  <label class="rateNum" id="quality-rating" for="quality-rating-double">0.0/5</label>
   <br />
-  <label for="amenities-rating-tag">Amenties:</label>
-  <label for="amenities-rating-double">0.0/5</label>
+  <label class="rating" for="amenities-rating-tag">Amenities:</label>
+  <label class="rateNum" id="amenities-rating" for="amenities-rating-double">0.0/5</label>
   <br />
-  <label for="community-rating-tag">Community:</label>
-  <label for="community-rating-double">0.0/5</label>
+  <label class="rating" for="community-rating-tag">Community:</label>
+  <label class="rateNum" id="community-rating" for="community-rating-double">0.0/5</label>
   <br /><br /><br />
 
-  <label for="reviews-header">Reviews</label>
-  <br /><br /><br />
+ <label id="review-label" for="reviews-header">Leave A Review</label>
+  <br></br>
 
-  <label for="add-a-review-header">Leave A Review:</label>
-  <br />
   <Form name="Form1" method="" action="">
   <textarea id="review-message"  maxlength="200" rows="10" cols="25"> </textarea>
 </Form>  
-  Rate the following categories on a 5 point scale:
-  <br/>
+  <p id="rateinstructions">Rate the following categories on a 5 point scale:</p>
 
 
   <script>
@@ -248,28 +233,27 @@
 
 
   <!-- location score -->
-  <label for="location-score">Location:</label>
-  <input type="number" id="location-score" onchange="handleChange(this);" min=1 max=5 style="height:15px; width:30px;" maxlength="3"/> <br>
+  <label class="reviewclass" for="location-score">Location:</label>
+  <input type="number" class="score-box" id="location-score" onchange="handleChange(this);" min=1 max=5 style="height:15px; width:30px;" maxlength="3"/> <br>
 
 
   <!-- quality score -->
-  <label for="quality-score">Quality:</label>
-  <input type="number" id="quality-score" onchange="handleChange(this);" min=1 max=5 style="height:15px; width:30px;" maxlength="3"/> <br>
+  <label class="reviewclass" for="quality-score">Quality:</label>
+  <input type="number" class="score-box" id="quality-score" onchange="handleChange(this);" min=1 max=5 style="height:15px; width:30px;" maxlength="3"/> <br>
 
 
   <!-- amenities score -->
-  <label for="amenities-score">Amenities:</label>
-  <input type="number" id="amenities-score" onchange="handleChange(this);" min=1 max=5 style="height:15px; width:30px;" maxlength="3"/> <br>
+  <label class="reviewclass" for="amenities-score">Amenities:</label>
+  <input type="number" class="score-box" id="amenities-score" onchange="handleChange(this);" min=1 max=5 style="height:15px; width:30px;" maxlength="3"/> <br>
 
 
   <!-- community score -->
-  <label for="community-score">Community:</label>
-  <input type="number" id="community-score" onchange="handleChange(this);" min=1 max=5 style="height:15px; width:30px;" maxlength="3"/> <br>
+  <label class="reviewclass" for="community-score">Community:</label>
+  <input type="number" class="score-box" id="community-score" onchange="handleChange(this);" min=1 max=5 style="height:15px; width:30px;" maxlength="3"/> <br>
 
 
   <!-- submit button -->
   <button id="submit-button">Submit Review</button>
-
 
   <!--  comment stuff  -->
   
@@ -278,7 +262,4 @@
   <section id="commentBody"></section>
   <section id="comments"></section>
 </div>
-
-
 </body>
-</html>
