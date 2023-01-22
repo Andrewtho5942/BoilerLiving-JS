@@ -227,6 +227,11 @@ async function main() {
     });
   }
 
+
+  //init global vars
+
+
+
   //subscribe to comment updates for a location
   function subscribeComments(location) {
     // Create query for messages
@@ -270,17 +275,16 @@ async function main() {
         entry2.textContent = doc.data().reviewMessage;
         comments.append(entry2);
       });
-      console.log(locationTotal);
-      
       //calculate the averages and set the docs in the locationData collection
         const docRef = doc(db, 'locationMetadata', location);
         try{
-          await setDoc(docRef, {
+           setDoc(docRef, {
             //calculate and store averages
+            amenitiesAverage:amenitiesTotal/numReviews,
             locationAverage:locationTotal/numReviews,
             qualityAverage:qualityTotal/numReviews,
             communityAverage:communitytotal/numReviews,
-            amenitiesAverage:amenitiesTotal/numReviews,
+            
             overallRating:((locationTotal/numReviews)+(qualityTotal/numReviews)+(communitytotal/numReviews)+(amenitiesTotal/numReviews))/4,
             name:location
           });
