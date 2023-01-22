@@ -183,6 +183,20 @@ async function main() {
     });
   }
 
+  var toRate;
+  //value from 0-5
+  //nameIDs:
+  //"net-rating"
+  //"location-rating"
+  //"quality-rating"
+  //"amenities-rating"
+  //"communtity-rating"
+  function setRating(value, nameID) {
+    toRate = document.getElementById(nameID);
+    value = value.toFixed(2);
+    toRate.innerHTML = '' + value + '/5';
+  }
+
   var imageImage;
   var locationTitle;
   //listen to clicks on any location in the grid
