@@ -28,29 +28,33 @@ import * as firebaseui from 'firebaseui';
 
 let db, auth;
 
+let locPage = "blank";
+
 const form = document.getElementById('send-message');
 const input = document.getElementById('message');
 const chat = document.getElementById('chat');
 const startButton = document.getElementById('signIn');
+const test = document.getElementById('test');
+
 
 //grid location elements
-const meredith = document.getElementById("pMeredith");
-const meredithSouth = document.getElementById("pMeredithSouth");
-const windsor = document.getElementById("pWindsor");
-const cary = document.getElementById("pCary");
-const mccutcheon = document.getElementById("pMccutcheon");
-const tarkington = document.getElementById("pTarkington");
-const wiley = document.getElementById("pWiley");
-const earheart = document.getElementById("pEarheart");
+const meredith = document.getElementById("pmeredith");
+const meredithSouth = document.getElementById("pmeredithSouth");
+const windsor = document.getElementById("pwindsor");
+const cary = document.getElementById("pcary");
+const mccutcheon = document.getElementById("pmccutcheon");
+const tarkington = document.getElementById("ptarkington");
+const wiley = document.getElementById("pwiley");
+const earheart = document.getElementById("pearheart");
 const towers = document.getElementById("ptowers");
-const freida = document.getElementById("pFreida");
-const winifred = document.getElementById("pWinifred");
-const harrison = document.getElementById("pHarrison");
-const hawkins = document.getElementById("pHawkins");
-const hillenbrand = document.getElementById("pHillenbrand");
-const honors = document.getElementById("pHonors");
-const owen = document.getElementById("pOwen");
-const shreve = document.getElementById("pShreve");
+const freida = document.getElementById("pfreida");
+const winifred = document.getElementById("pwinifred");
+const harrison = document.getElementById("pharrison");
+const hawkins = document.getElementById("phawkins");
+const hillenbrand = document.getElementById("phillenbrand");
+const honors = document.getElementById("phonors");
+const owen = document.getElementById("powen");
+const shreve = document.getElementById("pshreve");
 
 
 
@@ -60,7 +64,6 @@ const abledLink = 'https://js-kddsga.stackblitz.io';
 let chatListener = null;
 
 async function main() {
-  
   // Firebase config
   const firebaseConfig = {
 
@@ -79,7 +82,7 @@ async function main() {
     measurementId: "G-6HKFCTNRL7"
   
   };
-  
+
   
   
   initializeApp(firebaseConfig);
@@ -90,8 +93,6 @@ async function main() {
  
   
   // Firebase UI Config
-  
-  
   const uiConfig = {
     credentialHelper: firebaseui.auth.CredentialHelper.NONE,
     signInOptions: [
@@ -109,12 +110,10 @@ async function main() {
 
   const ui = new firebaseui.auth.AuthUI(auth);
   
-  //link testing
-  console.log('open');
-  document.getElementById('link').onclick = function () {
-    console.log('link clicked');
-  };
   
+
+
+
   startButton.addEventListener('click', () => {
     console.log("clicked!");
     if (auth.currentUser) {
@@ -198,20 +197,18 @@ async function main() {
 }
 
 //listen to clicks on any location in the grid
-meredith.onclick = async () => {
+meredith.addEventListener('click', () => {
+  console.log("meredith was clicked!");
+  locPage="meredith";
+  test.style.display='block';
+
+});
+cary.addEventListener('click', () => {
+  console.log("cary was clicked!");
+  locPage="cary";
+  test.style.display='block';
   
-  // Get a reference to the user's document in the userData collection
-  const userRef = doc(db, 'userData', auth.currentUser.uid);
-  
-  // If they RSVP'd yes, save a document with attending: true
-  try{
-    await setDoc(userRef, {
-      lastClick: "Meredith",
-      time: Date.now()
-    });
-  }catch (e){
-    console.error(e);
-  }
-};
+});
+
 }
 main();
