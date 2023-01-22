@@ -1,5 +1,5 @@
 .star {
-  height:26px;
+  height: 26px;
 }
 
 #commentBody {
@@ -316,6 +316,9 @@ button {
 #location-image {
   width: 210px;
   height: 40px;
+  position: absolute;
+  left: 300px;
+  top: 1950px;
 }
 
 .rating {
@@ -323,6 +326,8 @@ button {
   padding-top: 2px;
   padding-bottom: 4px;
   font-size: 18px;
+  position: absolute;
+  left: 311px;
 }
 
 .rateNum {
@@ -331,7 +336,7 @@ button {
   font-weight: bold;
   padding-top: 1px;
   padding-bottom: 1px;
-  left: 150px;
+  left: 437px;
   position: absolute;
 }
 
@@ -367,12 +372,14 @@ button {
   padding-top: 2px;
   padding-bottom: 4px;
   font-size: 18px;
+  left: 311px;
+  position: absolute;
 }
 
 .score-box {
   width: 30px;
   height: 24x;
-  left: 120px;
+  left: 440px;
   padding-top: 2;
   padding-bottom: 2;
   position: absolute;
@@ -382,6 +389,8 @@ button {
   width: 140px;
   height: 40px;
   background-color: rgba(0, 0, 0, 1);
+  left: 311px;
+  position: absolute;
 }
 
 #map-image {
