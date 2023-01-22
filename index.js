@@ -239,7 +239,7 @@ async function main() {
         //first line
         doc.data().nameID;
         entry.textContent =
-          getTime(doc.data().timestamp) + '   ' +
+          getTime(doc.data().timestamp) + ' --  ' +
           doc.data().name + ': Community:  ' + community + '/5, Location: ' + location + '/5, ' +
           'Quality: ' + quality + '/5, Amenities: ' + amenities + '/5';
         comments.appendChild(entry);
@@ -247,6 +247,7 @@ async function main() {
         entry2.textContent = doc.data().reviewMessage;
         comments.append(entry2);
       });
+      console.log(locationAverage);
       async () => {
       //calculate the averages and set the docs in the locationData collection
         const userRef = doc(db, 'locationData', location);
@@ -257,11 +258,14 @@ async function main() {
             qualityAverage:qualityTotal/numReviews,
             communityAverage:communitytotal/numReviews,
             amenitiesAverage:amenitiesTotal/numReviews,
-            overallRating:((locationTotal/numReviews)+(qualityTotal/numReviews)+(communitytotal/numReviews)+(amenitiesTotal/numReviews))/4
+            overallRating:((locationTotal/numReviews)+(qualityTotal/numReviews)+(communitytotal/numReviews)+(amenitiesTotal/numReviews))/4,
+            name:location
           });
+          
         }catch (e){
           console.error(e);
         }
+        console.log("in async function");
       }
     });
   }
