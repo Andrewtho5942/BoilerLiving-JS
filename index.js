@@ -44,7 +44,7 @@ const cary = document.getElementById('pcary');
 const mccutcheon = document.getElementById('pmccutcheon');
 const tarkington = document.getElementById('ptarkington');
 const wiley = document.getElementById('pwiley');
-const earheart = document.getElementById('pearheart');
+const earhart = document.getElementById('pearhart');
 const towers = document.getElementById('ptowers');
 const freida = document.getElementById('pfreida');
 const winifred = document.getElementById('pwinifred');
@@ -267,7 +267,7 @@ async function main() {
       'https://www.housing.purdue.edu/images/_hero/first-street-towers-exterior-640x360.jpg';
   });
 
-    freida.addEventListener('click', () => {
+  freida.addEventListener('click', () => {
     locPage = 'freida';
     bottom.style.display = 'block';
     locationTitle = document.getElementById('location-name').innerHTML =
@@ -300,7 +300,7 @@ async function main() {
     locationTitle = document.getElementById('location-name').innerHTML =
       'Hawkins';
     imageImage = document.getElementById('image-image').src =
-      'src="https://www.housing.purdue.edu/images/_hero/hawkins-exterior-640x360.jpg" ';
+      'https://www.housing.purdue.edu/images/_hero/hawkins-exterior-640x360.jpg';
   });
 
   hillenbrand.addEventListener('click', () => {
