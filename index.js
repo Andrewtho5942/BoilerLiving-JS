@@ -33,6 +33,7 @@ let locPage = 'blank';
 const form = document.getElementById('send-message');
 const input = document.getElementById('message');
 const chat = document.getElementById('chat');
+const comments = document.getElementById('comments');
 const startButton = document.getElementById('signIn');
 const bottom = document.getElementById('bottom');
 
@@ -182,19 +183,37 @@ async function main() {
       });
     });
   }
+  function subscribeComments(location) {
+    // Create query for messages
+    const q = query(collection(db, 'locationData',location,'reviews'), orderBy('timestamp', 'desc'));
+    onSnapshot(q, (snaps) => {
+      // Reset page
+      comments.innerHTML = '';
+      // Loop through documents in database
+      snaps.forEach((doc) => {
+        // Create an HTML entry for each document and add it to the chat
+        const entry = document.createElement('p');
+        entry.textContent =
+          getTime(doc.data().timestamp) + ' ' + doc.data().name + ': ' + doc.data().text;
+        chat.appendChild(entry);
 
+      });
+    });
+  }
   var imageImage;
   var locationTitle;
   //listen to clicks on any location in the grid
   meredith.addEventListener('click', () => {
     locPage = 'meredith';
     bottom.style.display = 'block';
+    subscribeComments("meredith");
     locationTitle = document.getElementById('location-name').innerHTML =
       'Meredith';
     imageImage = document.getElementById('image-image').src =
       'https://www.housing.purdue.edu/images/_hero/meredith-exterior-640x360.jpg';
   });
   meredithsouth.addEventListener('click', () => {
+    subscribeComments("meredithsouth");
     locPage = 'meredithsouth';
     bottom.style.display = 'block';
     locationTitle = document.getElementById('location-name').innerHTML =
@@ -204,6 +223,7 @@ async function main() {
   });
 
   windsor.addEventListener('click', () => {
+    subscribeComments("windsor");
     locPage = 'windsor';
     bottom.style.display = 'block';
     locationTitle = document.getElementById('location-name').innerHTML =
@@ -212,6 +232,7 @@ async function main() {
   });
 
   cary.addEventListener('click', () => {
+    subscribeComments("cary");
     locPage = 'cary';
     bottom.style.display = 'block';
     locationTitle = document.getElementById('location-name').innerHTML =
@@ -282,7 +303,7 @@ pageImg.src = imgSource;
     document.getElementById("community-score").value = "";
     document.getElementById("review-message").value = "";
     }
-
+    
 
   
   });
