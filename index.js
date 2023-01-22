@@ -39,7 +39,7 @@ const bottom = document.getElementById('bottom');
 
 //grid location elements
 const meredith = document.getElementById("pmeredith");
-const meredithSouth = document.getElementById("pmeredithSouth");
+const meredithsouth = document.getElementById("pmeredithSouth");
 const windsor = document.getElementById("pwindsor");
 const cary = document.getElementById("pcary");
 const mccutcheon = document.getElementById("pmccutcheon");
@@ -196,18 +196,34 @@ async function main() {
     });
 }
 
+var imageImage;
+var locationTitle;
 //listen to clicks on any location in the grid
 meredith.addEventListener('click', () => {
-  console.log("meredith was clicked!");
   locPage="meredith";
   bottom.style.display='block';
-
+  locationTitle = document.getElementById('location-name').innerHTML = "Meredith";
+  imageImage = document.getElementById('image-image').src = "https://www.housing.purdue.edu/images/_hero/meredith-exterior-640x360.jpg";
 });
+meredithsouth.addEventListener('click', () => {
+  locPage="meredithsouth";
+  bottom.style.display='block';
+  locationTitle = document.getElementById('location-name').innerHTML = "Meredith South";
+  imageImage = document.getElementById('image-image').src = "https://www.housing.purdue.edu/images/_hero/meredith-south-exterior-640x360.jpg";
+});
+
+windsor.addEventListener('click', () => {
+  locPage="windsor";
+  bottom.style.display='block';
+  locationTitle = document.getElementById('location-name').innerHTML = "Windsor";
+  imageImage = document.getElementById('image-image').src = "";
+});
+
 cary.addEventListener('click', () => {
-  console.log("cary was clicked!");
   locPage="cary";
   bottom.style.display='block';
-  
+  locationTitle = document.getElementById('location-name').innerHTML = "Cary Quadrangle";
+  imageImage = document.getElementById('image-image').src = "https://www.housing.purdue.edu/images/_hero/caryquad-640x360.jpg";
 });
 
 }
