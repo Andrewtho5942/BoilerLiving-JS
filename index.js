@@ -60,6 +60,7 @@ const abledLink = 'https://js-kddsga.stackblitz.io';
 let chatListener = null;
 
 async function main() {
+  
   // Firebase config
   const firebaseConfig = {
 
@@ -80,13 +81,17 @@ async function main() {
   };
   
   
-
- 
+  
+  initializeApp(firebaseConfig);
   auth = getAuth();
   db = getFirestore();
-  initializeApp(firebaseConfig);
+  console.log(auth);
+  
+ 
+  
   // Firebase UI Config
-
+  
+  
   const uiConfig = {
     credentialHelper: firebaseui.auth.CredentialHelper.NONE,
     signInOptions: [
@@ -101,14 +106,15 @@ async function main() {
       },
     },
   };
-  const ui = new firebaseui.auth.AuthUI(auth);
 
+  const ui = new firebaseui.auth.AuthUI(auth);
+  
   //link testing
   console.log('open');
   document.getElementById('link').onclick = function () {
     console.log('link clicked');
   };
-
+  
   startButton.addEventListener('click', () => {
     console.log("clicked!");
     if (auth.currentUser) {
@@ -193,6 +199,7 @@ async function main() {
 
 //listen to clicks on any location in the grid
 meredith.onclick = async () => {
+  
   // Get a reference to the user's document in the userData collection
   const userRef = doc(db, 'userData', auth.currentUser.uid);
   
@@ -206,6 +213,5 @@ meredith.onclick = async () => {
     console.error(e);
   }
 };
-
 }
 main();
