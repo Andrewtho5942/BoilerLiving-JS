@@ -34,7 +34,7 @@ const form = document.getElementById('send-message');
 const input = document.getElementById('message');
 const chat = document.getElementById('chat');
 const startButton = document.getElementById('signIn');
-const test = document.getElementById('test');
+const bottom = document.getElementById('bottom');
 
 
 //grid location elements
@@ -110,7 +110,7 @@ async function main() {
 
   const ui = new firebaseui.auth.AuthUI(auth);
   
-  
+  bottom.style.display='none';
 
 
 
@@ -200,13 +200,13 @@ async function main() {
 meredith.addEventListener('click', () => {
   console.log("meredith was clicked!");
   locPage="meredith";
-  test.style.display='block';
+  bottom.style.display='block';
 
 });
 cary.addEventListener('click', () => {
   console.log("cary was clicked!");
   locPage="cary";
-  test.style.display='block';
+  bottom.style.display='block';
   
 });
 
