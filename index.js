@@ -56,7 +56,7 @@ const owen = document.getElementById('powen');
 const shreve = document.getElementById('pshreve');
 
 const disabledLink = '#';
-const abledLink = 'https://js-kddsga.stackblitz.io';
+const abledLink = '';
 
 let chatListener = null;
 
@@ -118,11 +118,9 @@ async function main() {
   onAuthStateChanged(auth, (user) => {
     if (user) {
       startButton.textContent = 'LOGOUT';
-      console.log('logged in');
       images = document.getElementsByClassName('locImg');
       [].forEach.call(images, function (image) {
-        console.log(abledLink);
-        image.href = abledLink;
+        image.href = disabledLink;
       });
       //Subscribe to chat collection
       subscribeChat();
@@ -130,7 +128,7 @@ async function main() {
       startButton.textContent = 'Sign In To Chat';
       images = document.getElementsByClassName('locImg');
       [].forEach.call(images, function (image) {
-        image.href = disabledLink;
+        image.href = abledLink;
       });
     }
   });
@@ -277,18 +275,17 @@ pageImg.src = imgSource;
       qualityScore:qualityScore,
       communityScore:communityScore,
       average:average,
-      numReviews:1,
       timestamp: Date.now(),
       name: auth.currentUser.displayName,
       userId: auth.currentUser.uid,
     });
 
 
-    document.getElementById("location-score").innerHTML = "";
-    document.getElementById("quality-score").innerHTML = "";
-    document.getElementById('amenities-score').innerHTML = "";
-    document.getElementById("community-score").innerHTML = "";
-    document.getElementById("review-message").innerHTML = "";
+    document.getElementById("location-score").value = "";
+    document.getElementById("quality-score").value = "";
+    document.getElementById('amenities-score').value = "";
+    document.getElementById("community-score").value = "";
+    document.getElementById("review-message").value = "";
     }
 
 
