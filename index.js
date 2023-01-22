@@ -294,10 +294,10 @@ async function main() {
     'https://i.ibb.co/k2cbPVx/5Stars.png',
   ];
 
-  var frontRating;
+  var frontRating = document.getElementById('meredith-rating');
   var starImage;
   let avgs;
-  function subscribeRatings() {
+  function subscribeRatingssrc() {
     // Create query for messages
     const q = query(collection(db, 'locationMetadata'));
     onSnapshot(q, (snaps) => {
