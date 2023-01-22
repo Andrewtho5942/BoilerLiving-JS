@@ -203,8 +203,11 @@ async function main() {
     onSnapshot(q, (snaps) => {
       // Reset page
       comments.innerHTML = '';
+      let locationTotal, qualityTotal, amenitiesTotal, communitytotal, ;
+      let numReviews = 0;
       // Loop through documents in database
       snaps.forEach((doc) => {
+        numReviews++;
         // Create an HTML entry for each document and add it to the chat
         const entry = document.createElement('p');
         const entry2 = document.createElement('q');
@@ -229,16 +232,11 @@ async function main() {
         entry2.textContent = doc.data().reviewMessage;
         comments.append(entry2);
       });
+        //set the docs in the locationData collection
+
+        
     });
   }
-
-
-
-
-
-
-
-// test here
 
 const stars = ['https://i.ibb.co/r7Sw159/0-Stars.jpg',
 'https://i.ibb.co/D8YXwzD/1-Star.jpg',
@@ -623,6 +621,7 @@ function subscribeRatings() {
     amenitiesScore = +document.getElementById('amenities-score').value;
     communityScore = +document.getElementById('community-score').value;
 
+
     if (
       locationScore == 0 ||
       qualityScore == 0 ||
@@ -647,6 +646,8 @@ function subscribeRatings() {
         name: auth.currentUser.displayName,
         userId: auth.currentUser.uid,
       });
+
+
 
       document.getElementById('location-score').value = '';
       document.getElementById('quality-score').value = '';
