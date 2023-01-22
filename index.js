@@ -194,6 +194,7 @@ async function main() {
     imageImage = document.getElementById('image-image').src =
       'https://www.housing.purdue.edu/images/_hero/meredith-exterior-640x360.jpg';
   });
+
   meredithsouth.addEventListener('click', () => {
     locPage = 'meredithsouth';
     bottom.style.display = 'block';
@@ -208,7 +209,8 @@ async function main() {
     bottom.style.display = 'block';
     locationTitle = document.getElementById('location-name').innerHTML =
       'Windsor';
-    imageImage = document.getElementById('image-image').src = '';
+    imageImage = document.getElementById('image-image').src = 
+    'https://www.housing.purdue.edu/images/_hero/windsor-exterior-640x360.jpg';
   });
 
   cary.addEventListener('click', () => {
@@ -216,9 +218,127 @@ async function main() {
     bottom.style.display = 'block';
     locationTitle = document.getElementById('location-name').innerHTML =
       'Cary Quadrangle';
-    imageImage = document.getElementById('image-image').src =
-      'https://www.housing.purdue.edu/images/_hero/caryquad-640x360.jpg';
+    imageImage = document.getElementById('image-image').src = 
+    'https://www.housing.purdue.edu/images/_hero/caryquad-640x360.jpg';
   });
+
+  mccutcheon.addEventListener('click', () => {
+    locPage = 'mccutcheon';
+    bottom.style.display = 'block';
+    locationTitle = document.getElementById('location-name').innerHTML =
+      'McCutcheon';
+    imageImage = document.getElementById('image-image').src =
+      'https://www.housing.purdue.edu/images/_hero/mccutcheon-exterior-640x360.jpg';
+  });
+
+  tarkington.addEventListener('click', () => {
+    locPage = 'tarkington';
+    bottom.style.display = 'block';
+    locationTitle = document.getElementById('location-name').innerHTML =
+      'Tarkington';
+    imageImage = document.getElementById('image-image').src =
+      'https://www.housing.purdue.edu/images/_hero/tarkington-exterior-640x360.jpg';
+  });
+
+  wiley.addEventListener('click', () => {
+    locPage = 'wiley';
+    bottom.style.display = 'block';
+    locationTitle = document.getElementById('location-name').innerHTML =
+      'Wiley';
+    imageImage = document.getElementById('image-image').src =
+      'https://www.housing.purdue.edu/images/_hero/wiley-exterior-640x360.jpg';
+  });
+
+  earhart.addEventListener('click', () => {
+    locPage = 'earhart';
+    bottom.style.display = 'block';
+    locationTitle = document.getElementById('location-name').innerHTML =
+      'Earhart';
+    imageImage = document.getElementById('image-image').src =
+      'https://www.housing.purdue.edu/images/_hero/earhart-exterior-statue-640x360.jpg';
+  });
+
+ towers.addEventListener('click', () => {
+    locPage = 'towers';
+    bottom.style.display = 'block';
+    locationTitle = document.getElementById('location-name').innerHTML =
+      'First Street Towers';
+    imageImage = document.getElementById('image-image').src =
+      'https://www.housing.purdue.edu/images/_hero/first-street-towers-exterior-640x360.jpg';
+  });
+
+    freida.addEventListener('click', () => {
+    locPage = 'freida';
+    bottom.style.display = 'block';
+    locationTitle = document.getElementById('location-name').innerHTML =
+      'Freida Parker';
+    imageImage = document.getElementById('image-image').src =
+      'https://www.housing.purdue.edu/images/_hero/griffin-north-exterior-640x360.jpg';
+  });
+
+  winifred.addEventListener('click', () => {
+    locPage = 'winifred';
+    bottom.style.display = 'block';
+    locationTitle = document.getElementById('location-name').innerHTML =
+      'Winifred';
+    imageImage = document.getElementById('image-image').src =
+      'https://www.housing.purdue.edu/images/_hero/griffin-south-exterior-640x360.jpg';
+  });
+
+  harrison.addEventListener('click', () => {
+    locPage = 'harrison';
+    bottom.style.display = 'block';
+    locationTitle = document.getElementById('location-name').innerHTML =
+      'Harrison';
+    imageImage = document.getElementById('image-image').src =
+      'https://www.housing.purdue.edu/images/_hero/harrison-exterior-640x360.jpg';
+  });
+
+ hawkins.addEventListener('click', () => {
+    locPage = 'hawkins';
+    bottom.style.display = 'block';
+    locationTitle = document.getElementById('location-name').innerHTML =
+      'Hawkins';
+    imageImage = document.getElementById('image-image').src =
+      'src="https://www.housing.purdue.edu/images/_hero/hawkins-exterior-640x360.jpg" ';
+  });
+
+  hillenbrand.addEventListener('click', () => {
+    locPage = 'hillenbrand';
+    bottom.style.display = 'block';
+    locationTitle = document.getElementById('location-name').innerHTML =
+      'Hillenbrand';
+    imageImage = document.getElementById('image-image').src =
+      'https://www.housing.purdue.edu/images/_hero/hillenbrand-exterior-640x360.jpg';
+  });
+
+  honors.addEventListener('click', () => {
+    locPage = 'honors';
+    bottom.style.display = 'block';
+    locationTitle = document.getElementById('location-name').innerHTML =
+      'Honors College';
+    imageImage = document.getElementById('image-image').src =
+      'https://www.housing.purdue.edu/images/_hero/honors-college-exterior-640x360.jpg';
+  });
+
+  owen.addEventListener('click', () => {
+    locPage = 'owen';
+    bottom.style.display = 'block';
+    locationTitle = document.getElementById('location-name').innerHTML =
+      'Owen';
+    imageImage = document.getElementById('image-image').src =
+      'https://www.housing.purdue.edu/images/_hero/owen-exterior-640x360.jpg';
+  });
+
+  shreve.addEventListener('click', () => {
+    locPage = 'shreve';
+    bottom.style.display = 'block';
+    locationTitle = document.getElementById('location-name').innerHTML =
+      'Shreve';
+    imageImage = document.getElementById('image-image').src =
+      'https://www.housing.purdue.edu/images/_hero/shreve-exterior-640x360.jpg';
+  });
+
 
 
 
