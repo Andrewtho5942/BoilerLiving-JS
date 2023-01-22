@@ -183,6 +183,8 @@ async function main() {
       });
     });
   }
+
+  //subscribe to comment updates for a location
   function subscribeComments(location) {
     // Create query for messages
     const q = query(collection(db, 'locationData',location,'reviews'), orderBy('timestamp', 'desc'));
@@ -193,10 +195,14 @@ async function main() {
       snaps.forEach((doc) => {
         // Create an HTML entry for each document and add it to the chat
         const entry = document.createElement('p');
+        const entry2 = document.createElement('q');
+        //first line
         entry.textContent =
-          getTime(doc.data().timestamp) + ' ' + doc.data().name + ': ' + doc.data().text;
-        chat.appendChild(entry);
+          getTime(doc.data().timestamp) + '  --  ' + doc.data().name + ": Community:  " +doc.data().communityScore+ "/5, Location: "+ doc.data().locationScore + "/5, " +"Quality: "+ doc.data().qualityScore + "/5, Amenities: "+ doc.data().amenitiesScore; 
+        comments.appendChild(entry);
 
+        entry2.textContent=doc.data().reviewMessage;
+        comments.append(entry2);
       });
     });
   }
@@ -223,6 +229,7 @@ async function main() {
   });
 
   windsor.addEventListener('click', () => {
+    console.log("subscribed");
     subscribeComments("windsor");
     locPage = 'windsor';
     bottom.style.display = 'block';
@@ -283,19 +290,17 @@ pageImg.src = imgSource;
     } else {
       average = (locationScore + qualityScore +  amenitiesScore + communityScore) / 4;
 
-    console.log(locationScore + " " + qualityScore + " " + amenitiesScore + " " + communityScore + " " + average + ". " + reviewMessage);
-
     addDoc(collection(db, 'locationData',locPage,'reviews'), {
       reviewMessage:reviewMessage,
       locationScore:locationScore,
       qualityScore:qualityScore,
+      amenitiesScore:amenitiesScore,
       communityScore:communityScore,
       average:average,
       timestamp: Date.now(),
       name: auth.currentUser.displayName,
       userId: auth.currentUser.uid,
     });
-
 
     document.getElementById("location-score").value = "";
     document.getElementById("quality-score").value = "";
