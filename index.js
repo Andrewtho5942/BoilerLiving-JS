@@ -279,6 +279,7 @@ async function main() {
   });
 
   mccutcheon.addEventListener('click', () => {
+    subscribeComments('mccutcheon');
     locPage = 'mccutcheon';
     bottom.style.display = 'block';
     locationTitle = document.getElementById('location-name').innerHTML =
@@ -288,6 +289,7 @@ async function main() {
   });
 
   tarkington.addEventListener('click', () => {
+    subscribeComments('tarkington');
     locPage = 'tarkington';
     bottom.style.display = 'block';
     locationTitle = document.getElementById('location-name').innerHTML =
@@ -297,6 +299,7 @@ async function main() {
   });
 
   wiley.addEventListener('click', () => {
+    subscribeComments('wiley');
     locPage = 'wiley';
     bottom.style.display = 'block';
     locationTitle = document.getElementById('location-name').innerHTML =
@@ -306,6 +309,7 @@ async function main() {
   });
 
   earhart.addEventListener('click', () => {
+    subscribeComments('earhart');
     locPage = 'earhart';
     bottom.style.display = 'block';
     locationTitle = document.getElementById('location-name').innerHTML =
@@ -315,6 +319,7 @@ async function main() {
   });
 
   towers.addEventListener('click', () => {
+    subscribeComments('towers');
     locPage = 'towers';
     bottom.style.display = 'block';
     locationTitle = document.getElementById('location-name').innerHTML =
@@ -324,6 +329,7 @@ async function main() {
   });
 
   freida.addEventListener('click', () => {
+    subscribeComments('freida');
     locPage = 'freida';
     bottom.style.display = 'block';
     locationTitle = document.getElementById('location-name').innerHTML =
@@ -333,6 +339,7 @@ async function main() {
   });
 
   winifred.addEventListener('click', () => {
+    subscribeComments('winifred');
     locPage = 'winifred';
     bottom.style.display = 'block';
     locationTitle = document.getElementById('location-name').innerHTML =
@@ -342,6 +349,7 @@ async function main() {
   });
 
   harrison.addEventListener('click', () => {
+    subscribeComments('harrison');
     locPage = 'harrison';
     bottom.style.display = 'block';
     locationTitle = document.getElementById('location-name').innerHTML =
@@ -351,6 +359,7 @@ async function main() {
   });
 
   hawkins.addEventListener('click', () => {
+    subscribeComments('hawkins');
     locPage = 'hawkins';
     bottom.style.display = 'block';
     locationTitle = document.getElementById('location-name').innerHTML =
@@ -360,6 +369,7 @@ async function main() {
   });
 
   hillenbrand.addEventListener('click', () => {
+    subscribeComments('hillenbrand');
     locPage = 'hillenbrand';
     bottom.style.display = 'block';
     locationTitle = document.getElementById('location-name').innerHTML =
@@ -369,6 +379,7 @@ async function main() {
   });
 
   honors.addEventListener('click', () => {
+    subscribeComments('honors');
     locPage = 'honors';
     bottom.style.display = 'block';
     locationTitle = document.getElementById('location-name').innerHTML =
@@ -378,6 +389,7 @@ async function main() {
   });
 
   owen.addEventListener('click', () => {
+    subscribeComments('owen');
     locPage = 'owen';
     bottom.style.display = 'block';
     locationTitle = document.getElementById('location-name').innerHTML =
@@ -387,6 +399,7 @@ async function main() {
   });
 
   shreve.addEventListener('click', () => {
+    subscribeComments('shreve');
     locPage = 'shreve';
     bottom.style.display = 'block';
     locationTitle = document.getElementById('location-name').innerHTML =
