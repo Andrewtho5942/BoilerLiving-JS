@@ -31,22 +31,23 @@ let db, auth;
 let locPage = 'blank';
 
 let ratingsArray = [
-  -1,
-  -1,
-  -1,
-  -1,
-  -1,
-  -1,
-  -1,
-  -1,
-  -1,
-  -1,
-  -1,
-  -1,
-  -1,
-  -1,
-  -1 - 1,
-  -1,
+  [-1, -1, -1, -1, -1],
+  [-1, -1, -1, -1, -1],
+  [-1, -1, -1, -1, -1],
+  [-1, -1, -1, -1, -1],
+  [-1, -1, -1, -1, -1],
+  [-1, -1, -1, -1, -1],
+  [-1, -1, -1, -1, -1],
+  [-1, -1, -1, -1, -1],
+  [-1, -1, -1, -1, -1],
+  [-1, -1, -1, -1, -1],
+  [-1, -1, -1, -1, -1],
+  [-1, -1, -1, -1, -1],
+  [-1, -1, -1, -1, -1],
+  [-1, -1, -1, -1, -1],
+  [-1, -1, -1, -1, -1],
+  [-1, -1, -1, -1, -1],
+  [-1, -1, -1, -1, -1],
 ];
 
 const form = document.getElementById('send-message');
@@ -101,7 +102,6 @@ async function main() {
   initializeApp(firebaseConfig);
   auth = getAuth();
   db = getFirestore();
-  console.log(auth);
 
   // Firebase UI Config
   const uiConfig = {
@@ -124,7 +124,6 @@ async function main() {
   bottom.style.display = 'none';
 
   startButton.addEventListener('click', () => {
-    console.log('clicked!');
     if (auth.currentUser) {
       //user is signed in -> allows user to sign out
       signOut(auth);
@@ -214,10 +213,10 @@ async function main() {
     onSnapshot(q, (snaps) => {
       // Reset page
       comments.innerHTML = '';
-      let locationTotal=0;
-      let qualityTotal=0;
-      let amenitiesTotal=0;
-      let communitytotal=0;
+      let locationTotal = 0;
+      let qualityTotal = 0;
+      let amenitiesTotal = 0;
+      let communitytotal = 0;
       let numReviews = 0;
       // Loop through documents in database
       snaps.forEach((doc) => {
@@ -228,10 +227,10 @@ async function main() {
 
         numReviews++;
 
-        locationTotal+=location;
-        communitytotal+=community;
-        qualityTotal+=quality;
-        amenitiesTotal+=amenities;
+        locationTotal += location;
+        communitytotal += community;
+        qualityTotal += quality;
+        amenitiesTotal += amenities;
 
         // Create an HTML entry for each document and add it to the chat
         const entry = document.createElement('p');
@@ -239,27 +238,45 @@ async function main() {
         //first line
         doc.data().nameID;
         entry.textContent =
-          getTime(doc.data().timestamp) + '   ' +
-          doc.data().name + ': Community:  ' + community + '/5, Location: ' + location + '/5, ' +
-          'Quality: ' + quality + '/5, Amenities: ' + amenities + '/5';
+          getTime(doc.data().timestamp) +
+          ' --  ' +
+          doc.data().name +
+          ': Community:  ' +
+          community +
+          '/5, Location: ' +
+          location +
+          '/5, ' +
+          'Quality: ' +
+          quality +
+          '/5, Amenities: ' +
+          amenities +
+          '/5';
         comments.appendChild(entry);
 
         entry2.textContent = doc.data().reviewMessage;
         comments.append(entry2);
       });
-      async () => {
       //calculate the averages and set the docs in the locationData collection
-        const userRef = doc(db, 'locationData', location);
-        try{
-          await setDoc(userRef, {
+      const docRef = doc(db, 'locationMetadata', location);
+      if (numReviews > 0) {
+        try {
+          setDoc(docRef, {
             //calculate and store averages
-            locationAverage:locationTotal/numReviews,
-            qualityAverage:qualityTotal/numReviews,
-            communityAverage:communitytotal/numReviews,
-            amenitiesAverage:amenitiesTotal/numReviews,
-            overallRating:((locationTotal/numReviews)+(qualityTotal/numReviews)+(communitytotal/numReviews)+(amenitiesTotal/numReviews))/4
+            locationAverage: locationTotal / numReviews,
+            qualityAverage: qualityTotal / numReviews,
+            communityAverage: communitytotal / numReviews,
+            amenitiesAverage: amenitiesTotal / numReviews,
+            overallRating:
+              (locationTotal / numReviews +
+                qualityTotal / numReviews +
+                communitytotal / numReviews +
+                amenitiesTotal / numReviews) /
+              4,
+            name: location,
           });
-        }catch (e){
+          console.log(amenitiesTotal / numReviews);
+          console.log(qualityTotal / numReviews);
+        } catch (e) {
           console.error(e);
         }
       }
@@ -282,110 +299,178 @@ async function main() {
   let avgs;
   function subscribeRatings() {
     // Create query for messages
-    const q = query(collection(db, 'locationData'));
+    const q = query(collection(db, 'locationMetadata'));
     onSnapshot(q, (snaps) => {
       // Loop through documents in database
       snaps.forEach((doc) => {
         switch (doc.data().name) {
           case 'meredith':
-            ratingsArray[0] = doc.data().overallRating;
-            starImage = stars[doc.data().overallRating];
+            ratingsArray[0][0] = doc.data().overallRating;
+            ratingsArray[0][1] = doc.data().amenitiesAverage;
+            ratingsArray[0][2] = doc.data().locationAverage;
+            ratingsArray[0][3] = doc.data().qualityAverage;
+            ratingsArray[0][4] = doc.data().communityAverage;
+            starImage = stars[Math.round(doc.data().overallRating)];
             frontRating = document.getElementById('meredith-rating');
             frontRating.src = starImage;
             break;
           case 'meredithsouth':
-            ratingsArray[1] = doc.data().overallRating;
-            starImage = stars[doc.data().overallRating];
+            ratingsArray[1][0] = doc.data().overallRating;
+            ratingsArray[1][1] = doc.data().amenitiesAverage;
+            ratingsArray[1][2] = doc.data().locationAverage;
+            ratingsArray[1][3] = doc.data().qualityAverage;
+            ratingsArray[1][4] = doc.data().communityAverage;
+            starImage = stars[Math.round(doc.data().overallRating)];
             frontRating = document.getElementById('meredith-s-rating');
             frontRating.src = starImage;
             break;
           case 'windsor':
-            ratingsArray[2] = doc.data().overallRating;
-            starImage = stars[doc.data().overallRating];
+            ratingsArray[2][0] = doc.data().overallRating;
+            ratingsArray[2][1] = doc.data().amenitiesAverage;
+            ratingsArray[2][2] = doc.data().locationAverage;
+            ratingsArray[2][3] = doc.data().qualityAverage;
+            ratingsArray[2][4] = doc.data().communityAverage;
+            starImage = stars[Math.round(doc.data().overallRating)];
             frontRating = document.getElementById('windsor-rating');
             frontRating.src = starImage;
             break;
           case 'cary':
-            ratingsArray[3] = doc.data().overallRating;
-            starImage = stars[doc.data().overallRating];
+            ratingsArray[3][0] = doc.data().overallRating;
+            ratingsArray[3][1] = doc.data().amenitiesAverage;
+            ratingsArray[3][2] = doc.data().locationAverage;
+            ratingsArray[3][3] = doc.data().qualityAverage;
+            ratingsArray[3][4] = doc.data().communityAverage;
+            starImage = stars[Math.round(doc.data().overallRating)];
             frontRating = document.getElementById('cary-rating');
             frontRating.src = starImage;
             break;
           case 'mccutcheon':
-            ratingsArray[4] = doc.data().overallRating;
-            starImage = stars[doc.data().overallRating];
+            ratingsArray[4][0] = doc.data().overallRating;
+            ratingsArray[4][1] = doc.data().amenitiesAverage;
+            ratingsArray[4][2] = doc.data().locationAverage;
+            ratingsArray[4][3] = doc.data().qualityAverage;
+            ratingsArray[4][4] = doc.data().communityAverage;
+            starImage = stars[Math.round(doc.data().overallRating)];
             frontRating = document.getElementById('mccutcheon-rating');
             frontRating.src = starImage;
             break;
           case 'tarkington':
-            ratingsArray[5] = doc.data().overallRating;
-            starImage = stars[doc.data().overallRating];
+            ratingsArray[5][0] = doc.data().overallRating;
+            ratingsArray[5][1] = doc.data().amenitiesAverage;
+            ratingsArray[5][2] = doc.data().locationAverage;
+            ratingsArray[5][3] = doc.data().qualityAverage;
+            ratingsArray[5][4] = doc.data().communityAverage;
+            starImage = stars[Math.round(doc.data().overallRating)];
             frontRating = document.getElementById('tarkington-rating');
             frontRating.src = starImage;
             break;
           case 'wiley':
-            ratingsArray[6] = doc.data().overallRating;
-            starImage = stars[doc.data().overallRating];
+            ratingsArray[6][0] = doc.data().overallRating;
+            ratingsArray[6][1] = doc.data().amenitiesAverage;
+            ratingsArray[6][2] = doc.data().locationAverage;
+            ratingsArray[6][3] = doc.data().qualityAverage;
+            ratingsArray[6][4] = doc.data().communityAverage;
+            starImage = stars[Math.round(doc.data().overallRating)];
             frontRating = document.getElementById('wiley-rating');
             frontRating.src = starImage;
             break;
           case 'earhart':
-            ratingsArray[7] = doc.data().overallRating;
-            starImage = stars[doc.data().overallRating];
+            ratingsArray[7][0] = doc.data().overallRating;
+            ratingsArray[7][1] = doc.data().amenitiesAverage;
+            ratingsArray[7][2] = doc.data().locationAverage;
+            ratingsArray[7][3] = doc.data().qualityAverage;
+            ratingsArray[7][4] = doc.data().communityAverage;
+            starImage = stars[Math.round(doc.data().overallRating)];
             frontRating = document.getElementById('earhart-rating');
             frontRating.src = starImage;
             break;
           case 'towers':
-            ratingsArray[8] = doc.data().overallRating;
-            starImage = stars[doc.data().overallRating];
+            ratingsArray[8][0] = doc.data().overallRating;
+            ratingsArray[8][1] = doc.data().amenitiesAverage;
+            ratingsArray[8][2] = doc.data().locationAverage;
+            ratingsArray[8][3] = doc.data().qualityAverage;
+            ratingsArray[8][4] = doc.data().communityAverage;
+            starImage = stars[Math.round(doc.data().overallRating)];
             frontRating = document.getElementById('towers-rating');
             frontRating.src = starImage;
             break;
           case 'freida':
-            ratingsArray[9] = doc.data().overallRating;
-            starImage = stars[doc.data().overallRating];
+            ratingsArray[9][0] = doc.data().overallRating;
+            ratingsArray[9][1] = doc.data().amenitiesAverage;
+            ratingsArray[9][2] = doc.data().locationAverage;
+            ratingsArray[9][3] = doc.data().qualityAverage;
+            ratingsArray[9][4] = doc.data().communityAverage;
+            starImage = stars[Math.round(doc.data().overallRating)];
             frontRating = document.getElementById('freida-rating');
             frontRating.src = starImage;
             break;
           case 'winifred':
-            ratingsArray[10] = doc.data().overallRating;
-            starImage = stars[doc.data().overallRating];
+            ratingsArray[10][0] = doc.data().overallRating;
+            ratingsArray[10][1] = doc.data().amenitiesAverage;
+            ratingsArray[10][2] = doc.data().locationAverage;
+            ratingsArray[10][3] = doc.data().qualityAverage;
+            ratingsArray[10][4] = doc.data().communityAverage;
+            starImage = stars[Math.round(doc.data().overallRating)];
             frontRating = document.getElementById('winifred-rating');
             frontRating.src = starImage;
             break;
           case 'harrison':
-            ratingsArray[11] = doc.data().overallRating;
-            starImage = stars[doc.data().overallRating];
+            ratingsArray[11][0] = doc.data().overallRating;
+            ratingsArray[11][1] = doc.data().amenitiesAverage;
+            ratingsArray[11][2] = doc.data().locationAverage;
+            ratingsArray[11][3] = doc.data().qualityAverage;
+            ratingsArray[11][4] = doc.data().communityAverage;
+            starImage = stars[Math.round(doc.data().overallRating)];
             frontRating = document.getElementById('harrison-rating');
             frontRating.src = starImage;
             break;
           case 'hawkins':
-            ratingsArray[12] = doc.data().overallRating;
-            starImage = stars[doc.data().overallRating];
+            ratingsArray[12][0] = doc.data().overallRating;
+            ratingsArray[12][1] = doc.data().amenitiesAverage;
+            ratingsArray[12][2] = doc.data().locationAverage;
+            ratingsArray[12][3] = doc.data().qualityAverage;
+            ratingsArray[12][4] = doc.data().communityAverage;
+            starImage = stars[Math.round(doc.data().overallRating)];
             frontRating = document.getElementById('hawkins-rating');
             frontRating.src = starImage;
             break;
           case 'hillenbrand':
-            ratingsArray[13] = doc.data().overallRating;
-            starImage = stars[doc.data().overallRating];
+            ratingsArray[13][0] = doc.data().overallRating;
+            ratingsArray[13][1] = doc.data().amenitiesAverage;
+            ratingsArray[13][2] = doc.data().locationAverage;
+            ratingsArray[13][3] = doc.data().qualityAverage;
+            ratingsArray[13][4] = doc.data().communityAverage;
+            starImage = stars[Math.round(doc.data().overallRating)];
             frontRating = document.getElementById('hillenbrand-rating');
             frontRating.src = starImage;
             break;
           case 'honors':
-            ratingsArray[14] = doc.data().overallRating;
-            starImage = stars[doc.data().overallRating];
+            ratingsArray[14][0] = doc.data().overallRating;
+            ratingsArray[14][1] = doc.data().amenitiesAverage;
+            ratingsArray[14][2] = doc.data().locationAverage;
+            ratingsArray[14][3] = doc.data().qualityAverage;
+            ratingsArray[14][4] = doc.data().communityAverage;
+            starImage = stars[Math.round(doc.data().overallRating)];
             frontRating = document.getElementById('honors-rating');
             frontRating.src = starImage;
             break;
           case 'owen':
-            ratingsArray[15] = doc.data().overallRating;
-            starImage = stars[doc.data().overallRating];
+            ratingsArray[15][0] = doc.data().overallRating;
+            ratingsArray[15][1] = doc.data().amenitiesAverage;
+            ratingsArray[15][2] = doc.data().locationAverage;
+            ratingsArray[15][3] = doc.data().qualityAverage;
+            ratingsArray[15][4] = doc.data().communityAverage;
+            starImage = stars[Math.round(doc.data().overallRating)];
             frontRating = document.getElementById('owens-rating');
             frontRating.src = starImage;
             break;
           case 'shreve':
-            ratingsArray[16] = doc.data().overallRating;
-            starImage = stars[doc.data().overallRating];
+            ratingsArray[16][0] = doc.data().overallRating;
+            ratingsArray[16][1] = doc.data().amenitiesAverage;
+            ratingsArray[16][2] = doc.data().locationAverage;
+            ratingsArray[16][3] = doc.data().qualityAverage;
+            ratingsArray[16][4] = doc.data().communityAverage;
+            starImage = stars[Math.round(doc.data().overallRating)];
             frontRating = document.getElementById('shreve-rating');
             frontRating.src = starImage;
             break;
@@ -393,7 +478,7 @@ async function main() {
       });
     });
   }
-  var toRate;
+
   //value from 0-5
   //nameIDs:
   //"net-rating"
@@ -402,10 +487,23 @@ async function main() {
   //"amenities-rating"
   //"communtity-rating"
   function setRating(value, nameID) {
+    var toRate;
     toRate = document.getElementById(nameID);
     value = value.toFixed(2);
     toRate.innerHTML = '' + value + '/5';
   }
+
+  function setMultipleRatings(locationID) {
+    setRating(ratingsArray[locationID][0], 'net-rating');
+    setRating(ratingsArray[locationID][1], 'amenities-rating');
+    setRating(ratingsArray[locationID][2], 'location-rating');
+    setRating(ratingsArray[locationID][3], 'quality-rating');
+    setRating(ratingsArray[locationID][4], 'community-rating');
+  }
+
+  var starBottomImage;
+  var starTopImage;
+
   var imageImage;
   var locationTitle;
   var mapImage;
@@ -418,8 +516,10 @@ async function main() {
       'Meredith Hall';
     imageImage = document.getElementById('image-image').src =
       'https://www.housing.purdue.edu/images/_hero/meredith-exterior-640x360.jpg';
-      mapImage = document.getElementById("map-image");
-      mapImage.src = "https://i.ibb.co/3ywLZ3p/purdue-meredith.jpg"; 
+    starBottomImage = document.getElementById('location-image');
+    starTopImage = document.getElementById('meredith-rating');
+    starBottomImage.src = starTopImage.src;
+    setMultipleRatings(0);
   });
 
   meredithsouth.addEventListener('click', () => {
@@ -430,12 +530,13 @@ async function main() {
       'Meredith South Hall';
     imageImage = document.getElementById('image-image').src =
       'https://www.housing.purdue.edu/images/_hero/meredith-south-exterior-640x360.jpg';
-      mapImage = document.getElementById("map-image");
-      mapImage.src = "https://i.ibb.co/kXg71Xy/purdue-meredith-south.jpg"; 
+    starBottomImage = document.getElementById('location-image');
+    starTopImage = document.getElementById('meredith-s-rating');
+    starBottomImage.src = starTopImage.src;
+    setMultipleRatings(1);
   });
 
   windsor.addEventListener('click', () => {
-    console.log('subscribed');
     subscribeComments('windsor');
     locPage = 'windsor';
     bottom.style.display = 'block';
@@ -443,8 +544,10 @@ async function main() {
       'Windsor Hall';
     imageImage = document.getElementById('image-image').src =
       'https://www.housing.purdue.edu/images/_hero/windsor-exterior-640x360.jpg';
-      mapImage = document.getElementById("map-image");
-      mapImage.src = "https://i.ibb.co/8sG9GNf/purdue-windsor.jpg"; 
+    starBottomImage = document.getElementById('location-image');
+    starTopImage = document.getElementById('windsor-rating');
+    starBottomImage.src = starTopImage.src;
+    setMultipleRatings(2);
   });
 
   cary.addEventListener('click', () => {
@@ -455,8 +558,10 @@ async function main() {
       'Cary Quadrangle';
     imageImage = document.getElementById('image-image').src =
       'https://www.housing.purdue.edu/images/_hero/caryquad-640x360.jpg';
-      mapImage = document.getElementById("map-image");
-      mapImage.src = "https://i.ibb.co/yX6SRPS/purdue-cary-quad.jpg"; 
+    starBottomImage = document.getElementById('location-image');
+    starTopImage = document.getElementById('cary-rating');
+    starBottomImage.src = starTopImage.src;
+    setMultipleRatings(3);
   });
 
   mccutcheon.addEventListener('click', () => {
@@ -467,8 +572,10 @@ async function main() {
       'McCutcheon Hall';
     imageImage = document.getElementById('image-image').src =
       'https://www.housing.purdue.edu/images/_hero/mccutcheon-exterior-640x360.jpg';
-      mapImage = document.getElementById("map-image");
-      mapImage.src = "https://i.ibb.co/qxhC997/purdue-mccutcheon.jpg"; 
+    starBottomImage = document.getElementById('location-image');
+    starTopImage = document.getElementById('mccutcheon-rating');
+    starBottomImage.src = starTopImage.src;
+    setMultipleRatings(4);
   });
 
   tarkington.addEventListener('click', () => {
@@ -479,8 +586,10 @@ async function main() {
       'Tarkington Hall';
     imageImage = document.getElementById('image-image').src =
       'https://www.housing.purdue.edu/images/_hero/tarkington-exterior-640x360.jpg';
-      mapImage = document.getElementById("map-image");
-      mapImage.src = "https://i.ibb.co/4MYnQcr/purdue-tarkington.jpg"; 
+    starBottomImage = document.getElementById('location-image');
+    starTopImage = document.getElementById('tarkington-rating');
+    starBottomImage.src = starTopImage.src;
+    setMultipleRatings(5);
   });
 
   wiley.addEventListener('click', () => {
@@ -491,8 +600,10 @@ async function main() {
       'Wiley Hall';
     imageImage = document.getElementById('image-image').src =
       'https://www.housing.purdue.edu/images/_hero/wiley-exterior-640x360.jpg';
-      mapImage = document.getElementById("map-image");
-      mapImage.src = "https://i.ibb.co/k0QRXjw/purdue-wiley.jpg"; 
+    starBottomImage = document.getElementById('location-image');
+    starTopImage = document.getElementById('wiley-rating');
+    starBottomImage.src = starTopImage.src;
+    setMultipleRatings(6);
   });
 
   earhart.addEventListener('click', () => {
@@ -503,8 +614,10 @@ async function main() {
       'Earhart Hall';
     imageImage = document.getElementById('image-image').src =
       'https://www.housing.purdue.edu/images/_hero/earhart-exterior-statue-640x360.jpg';
-      mapImage = document.getElementById("map-image");
-      mapImage.src = "https://i.ibb.co/dfLh95H/purdue-earhart.jpg"; 
+    starBottomImage = document.getElementById('location-image');
+    starTopImage = document.getElementById('earhart-rating');
+    starBottomImage.src = starTopImage.src;
+    setMultipleRatings(7);
   });
 
   towers.addEventListener('click', () => {
@@ -515,8 +628,10 @@ async function main() {
       'First Street Towers';
     imageImage = document.getElementById('image-image').src =
       'https://www.housing.purdue.edu/images/_hero/first-street-towers-exterior-640x360.jpg';
-      mapImage = document.getElementById("map-image");
-      mapImage.src = "https://i.ibb.co/xGHLFM7/purdue-first-street-towers.jpg"; 
+    starBottomImage = document.getElementById('location-image');
+    starTopImage = document.getElementById('towers-rating');
+    starBottomImage.src = starTopImage.src;
+    setMultipleRatings(8);
   });
 
   freida.addEventListener('click', () => {
@@ -527,8 +642,10 @@ async function main() {
       'Freida Parker Hall';
     imageImage = document.getElementById('image-image').src =
       'https://www.housing.purdue.edu/images/_hero/griffin-north-exterior-640x360.jpg';
-      mapImage = document.getElementById("map-image");
-      mapImage.src = "https://i.ibb.co/q1DfxBd/purdue-freida-parker.jpg"; 
+    starBottomImage = document.getElementById('location-image');
+    starTopImage = document.getElementById('freida-rating');
+    starBottomImage.src = starTopImage.src;
+    setMultipleRatings(9);
   });
 
   winifred.addEventListener('click', () => {
@@ -539,8 +656,10 @@ async function main() {
       'Winifred Hall';
     imageImage = document.getElementById('image-image').src =
       'https://www.housing.purdue.edu/images/_hero/griffin-south-exterior-640x360.jpg';
-      mapImage = document.getElementById("map-image");
-      mapImage.src = "https://i.ibb.co/3h5W658/purdue-winifred-parker.jpg";
+    starBottomImage = document.getElementById('location-image');
+    starTopImage = document.getElementById('winifred-rating');
+    starBottomImage.src = starTopImage.src;
+    setMultipleRatings(10);
   });
 
   harrison.addEventListener('click', () => {
@@ -551,8 +670,10 @@ async function main() {
       'Harrison Hall';
     imageImage = document.getElementById('image-image').src =
       'https://www.housing.purdue.edu/images/_hero/harrison-exterior-640x360.jpg';
-      mapImage = document.getElementById("map-image");
-      mapImage.src = "https://i.ibb.co/FY4P8VD/purdue-harrison.jpg";
+    starBottomImage = document.getElementById('location-image');
+    starTopImage = document.getElementById('harrison-rating');
+    starBottomImage.src = starTopImage.src;
+    setMultipleRatings(11);
   });
 
   hawkins.addEventListener('click', () => {
@@ -563,8 +684,10 @@ async function main() {
       'Hawkins Hall';
     imageImage = document.getElementById('image-image').src =
       'https://www.housing.purdue.edu/images/_hero/hawkins-exterior-640x360.jpg';
-      mapImage = document.getElementById("map-image");
-      mapImage.src = "https://i.ibb.co/r5bxmdh/purdue-hawkins.jpg";
+    starBottomImage = document.getElementById('location-image');
+    starTopImage = document.getElementById('hawkins-rating');
+    starBottomImage.src = starTopImage.src;
+    setMultipleRatings(12);
   });
 
   hillenbrand.addEventListener('click', () => {
@@ -575,8 +698,10 @@ async function main() {
       'Hillenbrand Hall';
     imageImage = document.getElementById('image-image').src =
       'https://www.housing.purdue.edu/images/_hero/hillenbrand-exterior-640x360.jpg';
-      mapImage = document.getElementById("map-image");
-      mapImage.src = "https://i.ibb.co/9TB4Mg6/purdue-hillenbrand.jpg";
+    starBottomImage = document.getElementById('location-image');
+    starTopImage = document.getElementById('hillenbrand-rating');
+    starBottomImage.src = starTopImage.src;
+    setMultipleRatings(13);
   });
 
   honors.addEventListener('click', () => {
@@ -587,8 +712,10 @@ async function main() {
       'Honors College';
     imageImage = document.getElementById('image-image').src =
       'https://www.housing.purdue.edu/images/_hero/honors-college-exterior-640x360.jpg';
-      mapImage = document.getElementById("map-image");
-      mapImage.src = "https://i.ibb.co/mBzkmvW/purdue-honors.jpg";
+    starBottomImage = document.getElementById('location-image');
+    starTopImage = document.getElementById('honors-rating');
+    starBottomImage.src = starTopImage.src;
+    setMultipleRatings(14);
   });
 
   owen.addEventListener('click', () => {
@@ -599,8 +726,10 @@ async function main() {
       'Owen Hall';
     imageImage = document.getElementById('image-image').src =
       'https://www.housing.purdue.edu/images/_hero/owen-exterior-640x360.jpg';
-      mapImage = document.getElementById("map-image");
-      mapImage.src = "https://i.ibb.co/Qf7tF6s/purdue-owen.jpg";
+    starBottomImage = document.getElementById('location-image');
+    starTopImage = document.getElementById('owen-rating');
+    starBottomImage.src = starTopImage.src;
+    setMultipleRatings(15);
   });
 
   shreve.addEventListener('click', () => {
@@ -611,17 +740,13 @@ async function main() {
       'Shreve Hall';
     imageImage = document.getElementById('image-image').src =
       'https://www.housing.purdue.edu/images/_hero/shreve-exterior-640x360.jpg';
-      mapImage = document.getElementById("map-image");
-      mapImage.src = "https://i.ibb.co/pwwHtFC/purdue-shreve.jpg";
+    starBottomImage = document.getElementById('location-image');
+    starTopImage = document.getElementById('shreve-rating');
+    starBottomImage.src = starTopImage.src;
+    setMultipleRatings(16);
   });
 
-  document.addEventListener(
-    'DOMContentLoaded',
-    function () {
-      console.log('Ready!');
-    },
-    false
-  );
+  document.addEventListener('DOMContentLoaded', function () {}, false);
 
   //renaming to specific location name
   var locName = 'placeholder';
@@ -653,7 +778,6 @@ async function main() {
     amenitiesScore = +document.getElementById('amenities-score').value;
     communityScore = +document.getElementById('community-score').value;
 
-
     if (
       locationScore == 0 ||
       qualityScore == 0 ||
@@ -661,7 +785,6 @@ async function main() {
       communityScore == 0 ||
       reviewMessage.length == 0
     ) {
-      console.log('no');
       alert('All boxes must be filled.');
     } else {
       average =
@@ -679,13 +802,68 @@ async function main() {
         userId: auth.currentUser.uid,
       });
 
-
-
       document.getElementById('location-score').value = '';
       document.getElementById('quality-score').value = '';
       document.getElementById('amenities-score').value = '';
       document.getElementById('community-score').value = '';
       document.getElementById('review-message').value = '';
+      switch (locPage) {
+        case 'meredith':
+          setMultipleRatings(0);
+          break;
+        case 'meredithsouth':
+          setMultipleRatings(1);
+          break;
+        case 'windsor':
+          setMultipleRatings(2);
+          break;
+        case 'cary':
+          setMultipleRatings(3);
+          break;
+        case 'mccutcheon':
+          setMultipleRatings(4);
+          break;
+        case 'tarkington':
+          setMultipleRatings(5);
+          break;
+        case 'wiley':
+          setMultipleRatings(6);
+          break;
+        case 'earhart':
+          setMultipleRatings(7);
+          break;
+        case 'towers':
+          setMultipleRatings(8);
+          break;
+        case 'freida':
+          setMultipleRatings(9);
+          break;
+        case 'winifred':
+          setMultipleRatings(10);
+          break;
+        case 'harrison':
+          setMultipleRatings(11);
+          break;
+        case 'hawkins':
+          setMultipleRatings(12);
+          break;
+        case 'hillenbrand':
+          setMultipleRatings(13);
+          break;
+        case 'honors':
+          setMultipleRatings(14);
+          break;
+        case 'owen':
+          setMultipleRatings(15);
+          break;
+        case 'shreve':
+          setMultipleRatings(16);
+          break;
+        default:
+          console.log('we messed up');
+          setMultipleRatings(0);
+          break;
+      }
     }
   });
 }
