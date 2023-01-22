@@ -33,6 +33,7 @@ let locPage = 'blank';
 const form = document.getElementById('send-message');
 const input = document.getElementById('message');
 const chat = document.getElementById('chat');
+const comments = document.getElementById('comments');
 const startButton = document.getElementById('signIn');
 const bottom = document.getElementById('bottom');
 
@@ -183,6 +184,29 @@ async function main() {
     });
   }
 
+  //subscribe to comment updates for a location
+  function subscribeComments(location) {
+    // Create query for messages
+    const q = query(collection(db, 'locationData',location,'reviews'), orderBy('timestamp', 'desc'));
+    onSnapshot(q, (snaps) => {
+      // Reset page
+      comments.innerHTML = '';
+      // Loop through documents in database
+      snaps.forEach((doc) => {
+        // Create an HTML entry for each document and add it to the chat
+        const entry = document.createElement('p');
+        const entry2 = document.createElement('q');
+        //first line
+        entry.textContent =
+          getTime(doc.data().timestamp) + '  --  ' + doc.data().name + ": Community:  " +doc.data().communityScore+ "/5, Location: "+ doc.data().locationScore + "/5, " +"Quality: "+ doc.data().qualityScore + "/5, Amenities: "+ doc.data().amenitiesScore; 
+        comments.appendChild(entry);
+
+        entry2.textContent=doc.data().reviewMessage;
+        comments.append(entry2);
+      });
+    });
+  }
+  
   var toRate;
   //value from 0-5
   //nameIDs:
@@ -196,13 +220,13 @@ async function main() {
     value = value.toFixed(2);
     toRate.innerHTML = '' + value + '/5';
   }
-
   var imageImage;
   var locationTitle;
   //listen to clicks on any location in the grid
   meredith.addEventListener('click', () => {
     locPage = 'meredith';
     bottom.style.display = 'block';
+    subscribeComments("meredith");
     locationTitle = document.getElementById('location-name').innerHTML =
       'Meredith';
     imageImage = document.getElementById('image-image').src =
@@ -210,6 +234,7 @@ async function main() {
   });
 
   meredithsouth.addEventListener('click', () => {
+    subscribeComments("meredithsouth");
     locPage = 'meredithsouth';
     bottom.style.display = 'block';
     locationTitle = document.getElementById('location-name').innerHTML =
@@ -219,6 +244,8 @@ async function main() {
   });
 
   windsor.addEventListener('click', () => {
+    console.log("subscribed");
+    subscribeComments("windsor");
     locPage = 'windsor';
     bottom.style.display = 'block';
     locationTitle = document.getElementById('location-name').innerHTML =
@@ -228,6 +255,7 @@ async function main() {
   });
 
   cary.addEventListener('click', () => {
+    subscribeComments("cary");
     locPage = 'cary';
     bottom.style.display = 'block';
     locationTitle = document.getElementById('location-name').innerHTML =
@@ -326,6 +354,7 @@ async function main() {
       'https://www.housing.purdue.edu/images/_hero/hillenbrand-exterior-640x360.jpg';
   });
 
+
   honors.addEventListener('click', () => {
     locPage = 'honors';
     bottom.style.display = 'block';
@@ -352,11 +381,6 @@ async function main() {
     imageImage = document.getElementById('image-image').src =
       'https://www.housing.purdue.edu/images/_hero/shreve-exterior-640x360.jpg';
   });
-
-
-
-
-
 
 document.addEventListener('DOMContentLoaded', function() {
   console.log("Ready!");
@@ -401,12 +425,11 @@ pageImg.src = imgSource;
     } else {
       average = (locationScore + qualityScore +  amenitiesScore + communityScore) / 4;
 
-    console.log(locationScore + " " + qualityScore + " " + amenitiesScore + " " + communityScore + " " + average + ". " + reviewMessage);
-
-    addDoc(collection(db, 'locationData','windsor','reviews'), {
+    addDoc(collection(db, 'locationData',locPage,'reviews'), {
       reviewMessage:reviewMessage,
       locationScore:locationScore,
       qualityScore:qualityScore,
+      amenitiesScore:amenitiesScore,
       communityScore:communityScore,
       average:average,
       timestamp: Date.now(),
@@ -414,14 +437,13 @@ pageImg.src = imgSource;
       userId: auth.currentUser.uid,
     });
 
-
     document.getElementById("location-score").value = "";
     document.getElementById("quality-score").value = "";
     document.getElementById('amenities-score').value = "";
     document.getElementById("community-score").value = "";
     document.getElementById("review-message").value = "";
     }
-
+    
 
   
   });
