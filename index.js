@@ -45,7 +45,8 @@ let ratingsArray = [
   -1,
   -1,
   -1,
-  -1 - 1,
+  -1 
+  -1,
   -1,
 ];
 
@@ -280,14 +281,15 @@ async function main() {
         try{
            setDoc(docRef, {
             //calculate and store averages
-            amenitiesAverage:amenitiesTotal/numReviews,
             locationAverage:locationTotal/numReviews,
             qualityAverage:qualityTotal/numReviews,
             communityAverage:communitytotal/numReviews,
-            
+            amenitiesAverage:amenitiesTotal/numReviews,
             overallRating:((locationTotal/numReviews)+(qualityTotal/numReviews)+(communitytotal/numReviews)+(amenitiesTotal/numReviews))/4,
             name:location
           });
+          console.log(amenitiesTotal/numReviews);
+          console.log(qualityTotal/numReviews);
         }catch (e){
           console.error(e);
         }
