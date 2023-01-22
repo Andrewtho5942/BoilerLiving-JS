@@ -62,20 +62,24 @@ let chatListener = null;
 async function main() {
   // Firebase config
   const firebaseConfig = {
-    apiKey: 'AIzaSyC05K7n9cStnFrTQ06AOpQt7cAHyLZOf3Q',
 
-    authDomain: 'boilerliving.firebaseapp.com',
-
-    projectId: 'boilerliving',
-
-    storageBucket: 'boilerliving.appspot.com',
-
-    messagingSenderId: '1020361690137',
-
-    appId: '1:1020361690137:web:75d2525326961bd9c22e88',
-
-    measurementId: 'G-CT32RLKFEJ',
+    apiKey: "AIzaSyAPk7O__mtzcAuI74ZXvlkHaCoLB-TSkzA",
+  
+    authDomain: "boilerlivingx.firebaseapp.com",
+  
+    projectId: "boilerlivingx",
+  
+    storageBucket: "boilerlivingx.appspot.com",
+  
+    messagingSenderId: "952766726355",
+  
+    appId: "1:952766726355:web:de37c13c620855cc349426",
+  
+    measurementId: "G-6HKFCTNRL7"
+  
   };
+  
+  
 
  
   auth = getAuth();
@@ -106,6 +110,7 @@ async function main() {
   };
 
   startButton.addEventListener('click', () => {
+    console.log("clicked!");
     if (auth.currentUser) {
       //user is signed in -> allows user to sign out
       signOut(auth);
