@@ -31,24 +31,23 @@ let db, auth;
 let locPage = 'blank';
 
 let ratingsArray = [
-  [-1, -1, -1, -1, -1],
-  [-1, -1, -1, -1, -1],
-  [-1, -1, -1, -1, -1],
-  [-1, -1, -1, -1, -1],
-  [-1, -1, -1, -1, -1],
-  [-1, -1, -1, -1, -1],
-  [-1, -1, -1, -1, -1],
-  [-1, -1, -1, -1, -1],
-  [-1, -1, -1, -1, -1],
-  [-1, -1, -1, -1, -1],
-  [-1, -1, -1, -1, -1],
-  [-1, -1, -1, -1, -1],
-  [-1, -1, -1, -1, -1],
-  [-1, -1, -1, -1, -1],
-  [-1, -1, -1, -1, -1],
-  [-1, -1, -1, -1, -1],
-  [-1, -1, -1, -1, -1],
-];
+  [0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0]];
 
 const form = document.getElementById('send-message');
 const input = document.getElementById('message');
@@ -520,6 +519,8 @@ async function main() {
     starTopImage = document.getElementById('meredith-rating');
     starBottomImage.src = starTopImage.src;
     setMultipleRatings(0);
+    mapImage = document.getElementById("map-image");
+      mapImage.src = "https://i.ibb.co/3ywLZ3p/purdue-meredith.jpg"; 
   });
 
   meredithsouth.addEventListener('click', () => {
@@ -534,6 +535,8 @@ async function main() {
     starTopImage = document.getElementById('meredith-s-rating');
     starBottomImage.src = starTopImage.src;
     setMultipleRatings(1);
+    mapImage = document.getElementById("map-image");
+      mapImage.src = "https://i.ibb.co/kXg71Xy/purdue-meredith-south.jpg";
   });
 
   windsor.addEventListener('click', () => {
@@ -548,6 +551,8 @@ async function main() {
     starTopImage = document.getElementById('windsor-rating');
     starBottomImage.src = starTopImage.src;
     setMultipleRatings(2);
+    mapImage = document.getElementById("map-image");
+      mapImage.src = "https://i.ibb.co/8sG9GNf/purdue-windsor.jpg"; 
   });
 
   cary.addEventListener('click', () => {
@@ -562,6 +567,8 @@ async function main() {
     starTopImage = document.getElementById('cary-rating');
     starBottomImage.src = starTopImage.src;
     setMultipleRatings(3);
+    mapImage = document.getElementById("map-image");
+      mapImage.src = "https://i.ibb.co/yX6SRPS/purdue-cary-quad.jpg";
   });
 
   mccutcheon.addEventListener('click', () => {
@@ -576,6 +583,8 @@ async function main() {
     starTopImage = document.getElementById('mccutcheon-rating');
     starBottomImage.src = starTopImage.src;
     setMultipleRatings(4);
+    mapImage = document.getElementById("map-image");
+      mapImage.src = "https://i.ibb.co/qxhC997/purdue-mccutcheon.jpg"; 
   });
 
   tarkington.addEventListener('click', () => {
@@ -590,6 +599,8 @@ async function main() {
     starTopImage = document.getElementById('tarkington-rating');
     starBottomImage.src = starTopImage.src;
     setMultipleRatings(5);
+    mapImage = document.getElementById("map-image");
+      mapImage.src = "https://i.ibb.co/4MYnQcr/purdue-tarkington.jpg"; 
   });
 
   wiley.addEventListener('click', () => {
@@ -604,6 +615,8 @@ async function main() {
     starTopImage = document.getElementById('wiley-rating');
     starBottomImage.src = starTopImage.src;
     setMultipleRatings(6);
+    mapImage = document.getElementById("map-image");
+      mapImage.src = "https://i.ibb.co/k0QRXjw/purdue-wiley.jpg";
   });
 
   earhart.addEventListener('click', () => {
@@ -618,6 +631,8 @@ async function main() {
     starTopImage = document.getElementById('earhart-rating');
     starBottomImage.src = starTopImage.src;
     setMultipleRatings(7);
+    mapImage = document.getElementById("map-image");
+      mapImage.src = "https://i.ibb.co/dfLh95H/purdue-earhart.jpg"; 
   });
 
   towers.addEventListener('click', () => {
@@ -632,6 +647,8 @@ async function main() {
     starTopImage = document.getElementById('towers-rating');
     starBottomImage.src = starTopImage.src;
     setMultipleRatings(8);
+    mapImage = document.getElementById("map-image");
+      mapImage.src = "https://i.ibb.co/xGHLFM7/purdue-first-street-towers.jpg"; 
   });
 
   freida.addEventListener('click', () => {
@@ -646,6 +663,8 @@ async function main() {
     starTopImage = document.getElementById('freida-rating');
     starBottomImage.src = starTopImage.src;
     setMultipleRatings(9);
+    mapImage = document.getElementById("map-image");
+      mapImage.src = "https://i.ibb.co/q1DfxBd/purdue-freida-parker.jpg"; 
   });
 
   winifred.addEventListener('click', () => {
@@ -660,6 +679,8 @@ async function main() {
     starTopImage = document.getElementById('winifred-rating');
     starBottomImage.src = starTopImage.src;
     setMultipleRatings(10);
+    mapImage = document.getElementById("map-image");
+      mapImage.src = "https://i.ibb.co/3h5W658/purdue-winifred-parker.jpg";
   });
 
   harrison.addEventListener('click', () => {
@@ -674,6 +695,8 @@ async function main() {
     starTopImage = document.getElementById('harrison-rating');
     starBottomImage.src = starTopImage.src;
     setMultipleRatings(11);
+    mapImage = document.getElementById("map-image");
+      mapImage.src = "https://i.ibb.co/FY4P8VD/purdue-harrison.jpg";
   });
 
   hawkins.addEventListener('click', () => {
@@ -688,6 +711,8 @@ async function main() {
     starTopImage = document.getElementById('hawkins-rating');
     starBottomImage.src = starTopImage.src;
     setMultipleRatings(12);
+    mapImage = document.getElementById("map-image");
+      mapImage.src = "https://i.ibb.co/r5bxmdh/purdue-hawkins.jpg";
   });
 
   hillenbrand.addEventListener('click', () => {
@@ -702,6 +727,8 @@ async function main() {
     starTopImage = document.getElementById('hillenbrand-rating');
     starBottomImage.src = starTopImage.src;
     setMultipleRatings(13);
+    mapImage = document.getElementById("map-image");
+      mapImage.src = "https://i.ibb.co/9TB4Mg6/purdue-hillenbrand.jpg";
   });
 
   honors.addEventListener('click', () => {
@@ -716,6 +743,8 @@ async function main() {
     starTopImage = document.getElementById('honors-rating');
     starBottomImage.src = starTopImage.src;
     setMultipleRatings(14);
+    mapImage = document.getElementById("map-image");
+      mapImage.src = "https://i.ibb.co/mBzkmvW/purdue-honors.jpg";
   });
 
   owen.addEventListener('click', () => {
@@ -730,6 +759,8 @@ async function main() {
     starTopImage = document.getElementById('owen-rating');
     starBottomImage.src = starTopImage.src;
     setMultipleRatings(15);
+    mapImage = document.getElementById("map-image");
+      mapImage.src = "https://i.ibb.co/Qf7tF6s/purdue-owen.jpg";
   });
 
   shreve.addEventListener('click', () => {
@@ -744,6 +775,8 @@ async function main() {
     starTopImage = document.getElementById('shreve-rating');
     starBottomImage.src = starTopImage.src;
     setMultipleRatings(16);
+    mapImage = document.getElementById("map-image");
+      mapImage.src = "https://i.ibb.co/pwwHtFC/purdue-shreve.jpg";
   });
 
   document.addEventListener('DOMContentLoaded', function () {}, false);
