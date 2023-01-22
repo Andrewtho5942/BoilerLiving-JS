@@ -219,11 +219,6 @@ async function main() {
     imageImage = document.getElementById('image-image').src =
       'https://www.housing.purdue.edu/images/_hero/caryquad-640x360.jpg';
   });
-
-
-
-
-
 document.addEventListener('DOMContentLoaded', function() {
   console.log("Ready!");
 }, false);
@@ -269,7 +264,7 @@ pageImg.src = imgSource;
 
     console.log(locationScore + " " + qualityScore + " " + amenitiesScore + " " + communityScore + " " + average + ". " + reviewMessage);
 
-    addDoc(collection(db, 'locationData','windsor','reviews'), {
+    addDoc(collection(db, 'locationData',locPage,'reviews'), {
       reviewMessage:reviewMessage,
       locationScore:locationScore,
       qualityScore:qualityScore,
