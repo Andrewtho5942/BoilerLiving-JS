@@ -133,6 +133,7 @@ async function main() {
       });
       //Subscribe to chat collection
       subscribeChat();
+      subscribeRatings();
     } else {
       startButton.textContent = 'Sign In To Chat';
       images = document.getElementsByClassName('locImg');
@@ -246,44 +247,16 @@ const stars = ['https://i.ibb.co/r7Sw159/0-Stars.jpg',
 'https://i.ibb.co/6wdWNH4/5-Stars.jpg']
 
 var frontRating;
-frontRating = document.getElementById();
 
-//subscribe to comment updates for a location
-function TESTsubscribeComments() {
-  // Create query for messages
-  const q = query(
-    collection(db, 'locationData', 'windsor', 'overallAverage')
-  );
-  onSnapshot(q, (snaps) => {
-    // Reset page
-    comments.innerHTML = '';
-    // Loop through documents in database
-    snaps.forEach((doc) => {
-      // Create an HTML entry for each document and add it to the chat
-      const entry = document.createElement('p');
-      const entry2 = document.createElement('q');
-      //first line
-      entry.textContent =
-        'Overall Avg: '
-        doc.data().overallAverage +
-        'total reviews:  ' +
-        doc.data().totalReviews;
-      comments.appendChild(entry);
-
-      entry2.textContent = doc.data().reviewMessage;
-      comments.append(entry2);
-    });
-  });
-}
 var starImage;
 let avgs;
-function testsubscribeChat(location) {
+function subscribeRatings() {
   // Create query for messages
   const q = query(collection(db, 'locationData'));
   onSnapshot(q, (snaps) => {
     // Loop through documents in database
     snaps.forEach((doc) => {
-      switch(location){
+      switch(doc.data().name){
         case "meredith":
           ratingsArray[0]=doc.data().overallRating;
           starImage = stars[doc.data().overallRating];
@@ -390,20 +363,6 @@ function testsubscribeChat(location) {
     });
   });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   var toRate;
   //value from 0-5
