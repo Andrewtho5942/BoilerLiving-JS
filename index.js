@@ -30,6 +30,14 @@ let db, auth;
 
 let locPage = 'blank';
 
+let ratingsArray = [
+-1,-1,-1,-1,-1,
+-1,-1,-1,-1,-1,
+-1,-1,-1,-1,-1
+-1,-1];
+
+
+
 const form = document.getElementById('send-message');
 const input = document.getElementById('message');
 const chat = document.getElementById('chat');
@@ -200,6 +208,7 @@ async function main() {
         const entry = document.createElement('p');
         const entry2 = document.createElement('q');
         //first line
+        doc.data().nameID
         entry.textContent =
           getTime(doc.data().timestamp) +
           '  --  ' +
@@ -220,6 +229,181 @@ async function main() {
       });
     });
   }
+
+
+
+
+
+
+
+// test here
+
+const stars = ['https://i.ibb.co/r7Sw159/0-Stars.jpg',
+'https://i.ibb.co/D8YXwzD/1-Star.jpg',
+'https://i.ibb.co/mGr6Pr6/2-Stars.jpg',
+'https://i.ibb.co/161W3t4/3-Stars.jpg',
+'https://i.ibb.co/PgqG4L7/4-Stars.jpg',
+'https://i.ibb.co/6wdWNH4/5-Stars.jpg']
+
+var frontRating;
+frontRating = document.getElementById();
+
+//subscribe to comment updates for a location
+function TESTsubscribeComments() {
+  // Create query for messages
+  const q = query(
+    collection(db, 'locationData', 'windsor', 'overallAverage')
+  );
+  onSnapshot(q, (snaps) => {
+    // Reset page
+    comments.innerHTML = '';
+    // Loop through documents in database
+    snaps.forEach((doc) => {
+      // Create an HTML entry for each document and add it to the chat
+      const entry = document.createElement('p');
+      const entry2 = document.createElement('q');
+      //first line
+      entry.textContent =
+        'Overall Avg: '
+        doc.data().overallAverage +
+        'total reviews:  ' +
+        doc.data().totalReviews;
+      comments.appendChild(entry);
+
+      entry2.textContent = doc.data().reviewMessage;
+      comments.append(entry2);
+    });
+  });
+}
+var starImage;
+let avgs;
+function testsubscribeChat(location) {
+  // Create query for messages
+  const q = query(collection(db, 'locationData'));
+  onSnapshot(q, (snaps) => {
+    // Loop through documents in database
+    snaps.forEach((doc) => {
+      switch(location){
+        case "meredith":
+          ratingsArray[0]=doc.data().overallRating;
+          starImage = stars[doc.data().overallRating];
+          frontRating = document.getElementById('meredith-rating');
+          frontRating.src = starImage;
+          break;
+        case "meredithsouth":
+          ratingsArray[1]=doc.data().overallRating;
+          starImage = stars[doc.data().overallRating];
+          frontRating = document.getElementById('meredith-s-rating');
+          frontRating.src = starImage;
+          break;
+        case "windsor":
+          ratingsArray[2]=doc.data().overallRating;
+          starImage = stars[doc.data().overallRating];
+          frontRating = document.getElementById('windsor-rating');
+          frontRating.src = starImage;
+          break;
+        case "cary": 
+          ratingsArray[3]=doc.data().overallRating;
+          starImage = stars[doc.data().overallRating];
+          frontRating = document.getElementById('cary-rating');
+          frontRating.src = starImage;
+          break;
+        case "mccutcheon":
+          ratingsArray[4]=doc.data().overallRating;
+          starImage = stars[doc.data().overallRating];
+          frontRating = document.getElementById('mccutcheon-rating');
+          frontRating.src = starImage;
+          break;
+        case "tarkington":
+          ratingsArray[5]=doc.data().overallRating;
+          starImage = stars[doc.data().overallRating];
+          frontRating = document.getElementById('tarkington-rating');
+          frontRating.src = starImage;
+          break;
+        case "wiley":
+          ratingsArray[6]=doc.data().overallRating;
+          starImage = stars[doc.data().overallRating];
+          frontRating = document.getElementById('wiley-rating');
+          frontRating.src = starImage;
+          break;
+        case "earhart":
+          ratingsArray[7]=doc.data().overallRating;
+          starImage = stars[doc.data().overallRating];
+          frontRating = document.getElementById('earhart-rating');
+          frontRating.src = starImage;
+          break;
+        case "towers":
+          ratingsArray[8]=doc.data().overallRating;
+          starImage = stars[doc.data().overallRating];
+          frontRating = document.getElementById('towers-rating');
+          frontRating.src = starImage;
+          break;
+        case "freida":
+          ratingsArray[9]=doc.data().overallRating;
+          starImage = stars[doc.data().overallRating];
+          frontRating = document.getElementById('freida-rating');
+          frontRating.src = starImage;
+          break;
+        case "winifred":
+          ratingsArray[10]=doc.data().overallRating;
+          starImage = stars[doc.data().overallRating];
+          frontRating = document.getElementById('winifred-rating');
+          frontRating.src = starImage;
+          break;
+        case "harrison":
+          ratingsArray[11]=doc.data().overallRating;
+          starImage = stars[doc.data().overallRating];
+          frontRating = document.getElementById('harrison-rating');
+          frontRating.src = starImage;
+          break;
+        case "hawkins":
+          ratingsArray[12]=doc.data().overallRating;
+          starImage = stars[doc.data().overallRating];
+          frontRating = document.getElementById('hawkins-rating');
+          frontRating.src = starImage;
+          break;
+        case "hillenbrand":
+          ratingsArray[13]=doc.data().overallRating;
+          starImage = stars[doc.data().overallRating];
+          frontRating = document.getElementById('hillenbrand-rating');
+          frontRating.src = starImage;
+          break;
+        case "honors":
+          ratingsArray[14]=doc.data().overallRating;
+          starImage = stars[doc.data().overallRating];
+          frontRating = document.getElementById('honors-rating');
+          frontRating.src = starImage;
+          break;
+        case "owen":
+          ratingsArray[15]=doc.data().overallRating;
+          starImage = stars[doc.data().overallRating];
+          frontRating = document.getElementById('owens-rating');
+          frontRating.src = starImage;
+          break;
+        case "shreve":
+          ratingsArray[16]=doc.data().overallRating;
+          starImage = stars[doc.data().overallRating];
+          frontRating = document.getElementById('shreve-rating');
+          frontRating.src = starImage;
+          break;
+      }
+    });
+  });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   var toRate;
   //value from 0-5
