@@ -203,38 +203,55 @@ async function main() {
     onSnapshot(q, (snaps) => {
       // Reset page
       comments.innerHTML = '';
-      let locationTotal, qualityTotal, amenitiesTotal, communitytotal, ;
+      let locationTotal=0;
+      let qualityTotal=0;
+      let amenitiesTotal=0;
+      let communitytotal=0;
       let numReviews = 0;
       // Loop through documents in database
       snaps.forEach((doc) => {
+        let community = doc.data().communityScore;
+        let location = doc.data().locationScore;
+        let quality = doc.data().qualityScore;
+        let amenities = doc.data().amenitiesScore;
+
         numReviews++;
+
+        locationTotal+=location;
+        communitytotal+=community;
+        qualityTotal+=quality;
+        amenitiesTotal+=amenities;
+
         // Create an HTML entry for each document and add it to the chat
         const entry = document.createElement('p');
         const entry2 = document.createElement('q');
         //first line
         doc.data().nameID
         entry.textContent =
-          getTime(doc.data().timestamp) +
-          '  --  ' +
-          doc.data().name +
-          ': Community:  ' +
-          doc.data().communityScore +
-          '/5, Location: ' +
-          doc.data().locationScore +
-          '/5, ' +
-          'Quality: ' +
-          doc.data().qualityScore +
-          '/5, Amenities: ' +
-          doc.data().amenitiesScore +
-          '/5';
+          getTime(doc.data().timestamp) + '   ' +
+          doc.data().name + ': Community:  ' + community + '/5, Location: ' + location + '/5, ' +
+          'Quality: ' + quality + '/5, Amenities: ' + amenities + '/5';
         comments.appendChild(entry);
 
         entry2.textContent = doc.data().reviewMessage;
         comments.append(entry2);
       });
-        //set the docs in the locationData collection
-
-        
+      async () => {
+      //calculate the averages and set the docs in the locationData collection
+        const userRef = doc(db, 'locationData', location);
+        try{
+          await setDoc(userRef, {
+            //calculate and store averages
+            locationAverage:locationTotal/numReviews,
+            qualityAverage:qualityTotal/numReviews,
+            communityAverage:communitytotal/numReviews,
+            amenitiesAverage:amenitiesTotal/numReviews,
+            overallRating:((locationTotal/numReviews)+(qualityTotal/numReviews)+(communitytotal/numReviews)+(amenitiesTotal/numReviews))/4
+          });
+        }catch (e){
+          console.error(e);
+        }
+      }
     });
   }
 
