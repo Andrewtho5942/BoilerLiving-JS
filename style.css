@@ -394,14 +394,13 @@ button {
 }
 
 #map-image {
-  left: 510px;
-  top: 1950px;
+  left: 508px;
+  top: 2113px;
   width: 442px;
   height: 325px;
   position: absolute;
-
-
-
-
+  border-style: solid;
+  border-color: black;
+  border-radius: 3px;
+  border-width: 3px;
 }
-
