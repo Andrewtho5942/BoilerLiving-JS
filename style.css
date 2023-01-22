@@ -73,40 +73,41 @@ body {
   position: absolute;
 }
 
-#earheart {
-  left: 432px;
-  top: 708px;
-  position: absolute;
+
+#earhart{
+  left: 432px; 
+  top: 708px; 
+  position: absolute
 }
-#towers {
-  left: 832px;
-  top: 708px;
-  position: absolute;
+#towers{
+  left: 832px; 
+  top: 708px; 
+  position: absolute
 }
-#cary {
-  left: 32px;
-  top: 477px;
-  position: absolute;
+#cary{
+  left: 32px; 
+  top: 477px; 
+  position: absolute
 }
-#mccutcheon {
-  left: 432px;
-  top: 477px;
-  position: absolute;
+#mccutcheon{
+  left: 432px; 
+  top: 477px; 
+  position: absolute
 }
-#tarkington {
-  left: 832px;
-  top: 477px;
-  position: absolute;
+#tarkington{
+  left: 832px; 
+  top: 477px; 
+  position: absolute
 }
-#meredith {
-  left: 32px;
-  top: 246px;
-  position: absolute;
+#meredith{
+  left: 32px; 
+  top: 246px; 
+  position: absolute
 }
-#meredith-s {
-  left: 432px;
-  top: 246px;
-  position: absolute;
+#meredith-s{
+  left: 432px; 
+  top: 246px;  
+  position: absolute
 }
 
 #windsor {
