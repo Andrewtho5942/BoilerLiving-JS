@@ -101,7 +101,6 @@ async function main() {
   initializeApp(firebaseConfig);
   auth = getAuth();
   db = getFirestore();
-  console.log(auth);
 
   // Firebase UI Config
   const uiConfig = {
@@ -124,7 +123,6 @@ async function main() {
   bottom.style.display = 'none';
 
   startButton.addEventListener('click', () => {
-    console.log('clicked!');
     if (auth.currentUser) {
       //user is signed in -> allows user to sign out
       signOut(auth);
@@ -204,6 +202,31 @@ async function main() {
     });
   }
 
+  function subscribeReview() {
+    // Create query for messages
+    const q = query(collection(db,'locationMetadata'), orderBy('timestamp', 'desc'));
+    onSnapshot(q, (snaps) => {
+      snaps.forEach((doc) => {
+        async () => {
+          const docRef = doc(db, 'locationMetadata', doc.data().name);
+          // If they RSVP'd yes, save a document with attending: true
+          try{
+            await setDoc(docRef, {
+              locationAverage:locationTotal/numReviews,
+            qualityAverage:qualityTotal/numReviews,
+            communityAverage:communitytotal/numReviews,
+            amenitiesAverage:amenitiesTotal/numReviews,
+            overallRating:((locationTotal/numReviews)+(qualityTotal/numReviews)+(communitytotal/numReviews)+(amenitiesTotal/numReviews))/4,
+            name:location
+            });
+          }catch (e){
+            console.error(e);
+          }
+        };
+      });
+    });
+  }
+
   //subscribe to comment updates for a location
   function subscribeComments(location) {
     // Create query for messages
@@ -247,12 +270,12 @@ async function main() {
         entry2.textContent = doc.data().reviewMessage;
         comments.append(entry2);
       });
-      console.log(locationAverage);
-      async () => {
+      console.log(locationTotal);
+      
       //calculate the averages and set the docs in the locationData collection
-        const userRef = doc(db, 'locationData', location);
+        const docRef = doc(db, 'locationMetadata', location);
         try{
-          await setDoc(userRef, {
+          await setDoc(docRef, {
             //calculate and store averages
             locationAverage:locationTotal/numReviews,
             qualityAverage:qualityTotal/numReviews,
@@ -261,12 +284,10 @@ async function main() {
             overallRating:((locationTotal/numReviews)+(qualityTotal/numReviews)+(communitytotal/numReviews)+(amenitiesTotal/numReviews))/4,
             name:location
           });
-          
         }catch (e){
           console.error(e);
         }
-        console.log("in async function");
-      }
+        
     });
   }
 
@@ -434,7 +455,6 @@ async function main() {
   });
 
   windsor.addEventListener('click', () => {
-    console.log('subscribed');
     subscribeComments('windsor');
     locPage = 'windsor';
     bottom.style.display = 'block';
@@ -587,7 +607,6 @@ async function main() {
   document.addEventListener(
     'DOMContentLoaded',
     function () {
-      console.log('Ready!');
     },
     false
   );
@@ -630,7 +649,6 @@ async function main() {
       communityScore == 0 ||
       reviewMessage.length == 0
     ) {
-      console.log('no');
       alert('All boxes must be filled.');
     } else {
       average =
