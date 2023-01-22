@@ -287,11 +287,11 @@ async function main() {
 
   const stars = [
     'https://i.ibb.co/r7Sw159/0-Stars.jpg',
-    'https://i.ibb.co/D8YXwzD/1-Star.jpg',
-    'https://i.ibb.co/mGr6Pr6/2-Stars.jpg',
-    'https://i.ibb.co/161W3t4/3-Stars.jpg',
-    'https://i.ibb.co/PgqG4L7/4-Stars.jpg',
-    'https://i.ibb.co/6wdWNH4/5-Stars.jpg',
+    'https://i.ibb.co/MCVfG9v/1Star.png',
+    'https://i.ibb.co/Bnf8ZZB/2Stars.png',
+    'https://i.ibb.co/Nn3p4GJ/3Stars.png',
+    'https://i.ibb.co/xXgNjbp/4Stars.png',
+    'https://i.ibb.co/k2cbPVx/5Stars.png',
   ];
 
   var frontRating;
