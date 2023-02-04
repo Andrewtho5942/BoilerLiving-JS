@@ -314,6 +314,10 @@ async function main() {
             starImage = stars[Math.round(doc.data().overallRating)];
             frontRating = document.getElementById('meredith-rating');
             frontRating.src = starImage;
+            if(locPage == 'meredith'){
+              setMultipleRatings(0);
+              (document.getElementById('location-image')).src = starImage;
+            }
             break;
           case 'meredithsouth':
             ratingsArray[1][0] = doc.data().overallRating;
@@ -324,6 +328,10 @@ async function main() {
             starImage = stars[Math.round(doc.data().overallRating)];
             frontRating = document.getElementById('meredith-s-rating');
             frontRating.src = starImage;
+            if(locPage == 'meredithsouth'){
+              setMultipleRatings(1);
+              (document.getElementById('location-image')).src = starImage;
+            }
             break;
           case 'windsor':
             ratingsArray[2][0] = doc.data().overallRating;
@@ -334,6 +342,10 @@ async function main() {
             starImage = stars[Math.round(doc.data().overallRating)];
             frontRating = document.getElementById('windsor-rating');
             frontRating.src = starImage;
+            if(locPage == 'windsor'){
+              setMultipleRatings(2);
+              (document.getElementById('location-image')).src = starImage;
+            }
             break;
           case 'cary':
             ratingsArray[3][0] = doc.data().overallRating;
@@ -344,6 +356,10 @@ async function main() {
             starImage = stars[Math.round(doc.data().overallRating)];
             frontRating = document.getElementById('cary-rating');
             frontRating.src = starImage;
+            if(locPage == 'cary'){
+              setMultipleRatings(3);
+              (document.getElementById('location-image')).src = starImage;
+            }
             break;
           case 'mccutcheon':
             ratingsArray[4][0] = doc.data().overallRating;
@@ -354,6 +370,10 @@ async function main() {
             starImage = stars[Math.round(doc.data().overallRating)];
             frontRating = document.getElementById('mccutcheon-rating');
             frontRating.src = starImage;
+            if(locPage == 'mccutcheon'){
+              setMultipleRatings(4);
+              (document.getElementById('location-image')).src = starImage;
+            }
             break;
           case 'tarkington':
             ratingsArray[5][0] = doc.data().overallRating;
@@ -364,6 +384,10 @@ async function main() {
             starImage = stars[Math.round(doc.data().overallRating)];
             frontRating = document.getElementById('tarkington-rating');
             frontRating.src = starImage;
+            if(locPage == 'tarkington'){
+              setMultipleRatings(5);
+              (document.getElementById('location-image')).src = starImage;
+            }
             break;
           case 'wiley':
             ratingsArray[6][0] = doc.data().overallRating;
@@ -374,6 +398,10 @@ async function main() {
             starImage = stars[Math.round(doc.data().overallRating)];
             frontRating = document.getElementById('wiley-rating');
             frontRating.src = starImage;
+            if(locPage == 'wiley'){
+              setMultipleRatings(6);
+              (document.getElementById('location-image')).src = starImage;
+            }
             break;
           case 'earhart':
             ratingsArray[7][0] = doc.data().overallRating;
@@ -384,6 +412,10 @@ async function main() {
             starImage = stars[Math.round(doc.data().overallRating)];
             frontRating = document.getElementById('earhart-rating');
             frontRating.src = starImage;
+            if(locPage == 'earhart'){
+              setMultipleRatings(7);
+              (document.getElementById('location-image')).src = starImage;
+            }
             break;
           case 'towers':
             ratingsArray[8][0] = doc.data().overallRating;
@@ -394,6 +426,10 @@ async function main() {
             starImage = stars[Math.round(doc.data().overallRating)];
             frontRating = document.getElementById('towers-rating');
             frontRating.src = starImage;
+            if(locPage == 'towers'){
+              setMultipleRatings(8);
+              (document.getElementById('location-image')).src = starImage;
+            }
             break;
           case 'freida':
             ratingsArray[9][0] = doc.data().overallRating;
@@ -404,6 +440,10 @@ async function main() {
             starImage = stars[Math.round(doc.data().overallRating)];
             frontRating = document.getElementById('freida-rating');
             frontRating.src = starImage;
+            if(locPage == 'freida'){
+              setMultipleRatings(9);
+              (document.getElementById('location-image')).src = starImage;
+            }
             break;
           case 'winifred':
             ratingsArray[10][0] = doc.data().overallRating;
@@ -414,6 +454,10 @@ async function main() {
             starImage = stars[Math.round(doc.data().overallRating)];
             frontRating = document.getElementById('winifred-rating');
             frontRating.src = starImage;
+            if(locPage == 'winifred'){
+              setMultipleRatings(10);
+              (document.getElementById('location-image')).src = starImage;
+            }
             break;
           case 'harrison':
             ratingsArray[11][0] = doc.data().overallRating;
@@ -424,6 +468,10 @@ async function main() {
             starImage = stars[Math.round(doc.data().overallRating)];
             frontRating = document.getElementById('harrison-rating');
             frontRating.src = starImage;
+            if(locPage == 'harrison'){
+              setMultipleRatings(11);
+              (document.getElementById('location-image')).src = starImage;
+            }
             break;
           case 'hawkins':
             ratingsArray[12][0] = doc.data().overallRating;
@@ -434,6 +482,10 @@ async function main() {
             starImage = stars[Math.round(doc.data().overallRating)];
             frontRating = document.getElementById('hawkins-rating');
             frontRating.src = starImage;
+            if(locPage == 'hawkins'){
+              setMultipleRatings(12);
+              (document.getElementById('location-image')).src = starImage;
+            }
             break;
           case 'hillenbrand':
             ratingsArray[13][0] = doc.data().overallRating;
@@ -444,6 +496,10 @@ async function main() {
             starImage = stars[Math.round(doc.data().overallRating)];
             frontRating = document.getElementById('hillenbrand-rating');
             frontRating.src = starImage;
+            if(locPage == 'hillenbrand'){
+              setMultipleRatings(13);
+              (document.getElementById('location-image')).src = starImage;
+            }
             break;
           case 'honors':
             ratingsArray[14][0] = doc.data().overallRating;
@@ -454,6 +510,10 @@ async function main() {
             starImage = stars[Math.round(doc.data().overallRating)];
             frontRating = document.getElementById('honors-rating');
             frontRating.src = starImage;
+            if(locPage == 'honors'){
+              setMultipleRatings(14);
+              (document.getElementById('location-image')).src = starImage;
+            }
             break;
           case 'owen':
             ratingsArray[15][0] = doc.data().overallRating;
@@ -462,8 +522,12 @@ async function main() {
             ratingsArray[15][3] = doc.data().qualityAverage;
             ratingsArray[15][4] = doc.data().communityAverage;
             starImage = stars[Math.round(doc.data().overallRating)];
-            frontRating = document.getElementById('owens-rating');
+            frontRating = document.getElementById('owen-rating');
             frontRating.src = starImage;
+            if(locPage == 'owen'){
+              setMultipleRatings(15);
+              (document.getElementById('location-image')).src = starImage;
+            }
             break;
           case 'shreve':
             ratingsArray[16][0] = doc.data().overallRating;
@@ -474,6 +538,10 @@ async function main() {
             starImage = stars[Math.round(doc.data().overallRating)];
             frontRating = document.getElementById('shreve-rating');
             frontRating.src = starImage;
+            if(locPage == 'shreve'){
+              setMultipleRatings(16);
+              (document.getElementById('location-image')).src = starImage;
+            }
             break;
         }
       });
@@ -808,63 +876,6 @@ async function main() {
       document.getElementById('amenities-score').value = '';
       document.getElementById('community-score').value = '';
       document.getElementById('review-message').value = '';
-      switch (locPage) {
-        case 'meredith':
-          setMultipleRatings(0);
-          break;
-        case 'meredithsouth':
-          setMultipleRatings(1);
-          break;
-        case 'windsor':
-          setMultipleRatings(2);
-          break;
-        case 'cary':
-          setMultipleRatings(3);
-          break;
-        case 'mccutcheon':
-          setMultipleRatings(4);
-          break;
-        case 'tarkington':
-          setMultipleRatings(5);
-          break;
-        case 'wiley':
-          setMultipleRatings(6);
-          break;
-        case 'earhart':
-          setMultipleRatings(7);
-          break;
-        case 'towers':
-          setMultipleRatings(8);
-          break;
-        case 'freida':
-          setMultipleRatings(9);
-          break;
-        case 'winifred':
-          setMultipleRatings(10);
-          break;
-        case 'harrison':
-          setMultipleRatings(11);
-          break;
-        case 'hawkins':
-          setMultipleRatings(12);
-          break;
-        case 'hillenbrand':
-          setMultipleRatings(13);
-          break;
-        case 'honors':
-          setMultipleRatings(14);
-          break;
-        case 'owen':
-          setMultipleRatings(15);
-          break;
-        case 'shreve':
-          setMultipleRatings(16);
-          break;
-        default:
-          console.log('we messed up');
-          setMultipleRatings(0);
-          break;
-      }
     }
   });
 }
