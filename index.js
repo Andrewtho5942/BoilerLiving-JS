@@ -286,18 +286,19 @@ async function main() {
   // test here
 
   const stars = [
-    'https://i.ibb.co/r7Sw159/0-Stars.jpg',
-    'https://i.ibb.co/MCVfG9v/1Star.png',
-    'https://i.ibb.co/Bnf8ZZB/2Stars.png',
-    'https://i.ibb.co/Nn3p4GJ/3Stars.png',
-    'https://i.ibb.co/xXgNjbp/4Stars.png',
-    'https://i.ibb.co/k2cbPVx/5Stars.png',
+    'https://i.postimg.cc/k5w1tD65/0-Stars.jpg',
+    'https://i.postimg.cc/zBBdw5KF/1Star.png',
+    'https://i.postimg.cc/850Zt3bQ/2Stars.png',
+    'https://i.postimg.cc/fW3sDQpd/3Stars.png',
+    'https://i.postimg.cc/1XVJTHWg/4Stars.png',
+    'https://i.postimg.cc/fk4Bh9F8/5Stars.png',
   ];
 
-  var frontRating = document.getElementById('meredith-rating');
-  var starImage;
-  let avgs;
-  function subscribeRatingssrc() {
+  
+  function subscribeRatings() {
+    var frontRating = document.getElementById('meredith-rating');
+    console.log(frontRating);
+    var starImage;
     // Create query for messages
     const q = query(collection(db, 'locationMetadata'));
     onSnapshot(q, (snaps) => {
