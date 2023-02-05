@@ -3,35 +3,35 @@
 }
 
 #commentBody {
-  width: 48.82%;
-  height: 83.52%;
+  width: 930px;
+  height: 760px;
   border-radius: 4px;
   background-color: rgb(230, 230, 230);
   border: 2px solid black;
-  left: 50.4%;
-  top: 172.53%;
+  left: 960px;
+  top: 1570px;
   position: absolute;
 }
 #comments {
-  width: 47.77%;
-  height: 81.32%;
+  width: 910px;
+  height: 740px;
   border-radius: 6px;
   background-color: white;
   border: 4px solid rgb(245, 245, 245);
-  left: 50.92%;
-  top: 173.41%;
+  left: 970px;
+  top: 1578px;
   position: absolute;
 }
 #commentHeader {
-  width: 48.82%;
-  left: 49.87%;
-  top: 163.73%;
+  width: 930px;
+  left: 950px;
+  top: 1490px;
 
   position: absolute;
 }
 body {
   font-family: 'Economica', sans-serif;
-  width: 57.95%;
+  width: 500px;
 }
 
 .heading {
@@ -46,19 +46,16 @@ body {
 }
 
 #signIn {
-  left: 78.74%;
-  top: 94.5%;
-  height:4.4%;
-  width: 7.87%;
+  left: 1500px;
+  top: 910px;
+  width: 150px;
   background-color: rgb(30, 30, 30);
   position: absolute;
 }
 
 #mainBody {
-
-  width: 63%;
-  height: 162.7%;
-  position:absolute;
+  width: 240%;
+  height: 1480px;
   border-radius: 6px;
   background-color: rgb(230, 230, 230);
   border: 2px solid black;
@@ -71,8 +68,8 @@ body {
 .grid {
   border: 4px solid #444;
   float: left;
-  width: 29.1%;
-  margin: 1.09% 1.05%;
+  width: 352px;
+  margin: 10px 20px;
   text-align: center;
 }
 
@@ -87,13 +84,13 @@ body {
   padding: 2px 0px;
   background-color: rgba(255, 240, 190, 0.6);
   border: 2px solid black;
-  width: 18.48%;
+  width: 352px;
 }
 
 .heading h1 {
   margin: 0px;
   border: 4px solid black;
-  height: 5.5%;
+  height: 50px;
   padding-top: 0px;
 }
 .absolute {
@@ -102,112 +99,117 @@ body {
 
 /*     positions for the hosuing locations          */
 #wiley {
-  left: 1.68%;
-  top: 77.8%;
+  left: 32px;
+  top: 708px;
   position: absolute;
 }
 
 #earhart {
-  left: 22.68%;
-  top: 77.8%;
+  left: 432px;
+  top: 708px;
   position: absolute;
 }
 #towers {
-  left: 43.67%;
-  top: 77.85%;
+  left: 832px;
+  top: 708px;
   position: absolute;
 }
 #cary {
-  left: 1.68%;
-  top: 52.64%;
+  left: 32px;
+  top: 479px;
   position: absolute;
 }
 #mccutcheon {
-  left: 22.68%;
-  top: 51.64%;
+  left: 432px;
+  top: 479px;
   position: absolute;
 }
 #tarkington {
-  left: 43.67%;
-  top: 52.64%;
+  left: 832px;
+  top: 479px;
   position: absolute;
 }
 #meredith {
-  left: 1.2%;
-  top: 16.1%;
+  left: 32px;
+  top: 248px;
   position: absolute;
 }
 #meredith-s {
-  left: 22.68%;
-  top: 27.25%;
+  left: 432px;
+  top: 248px;
   position: absolute;
 }
 
 #windsor {
-  left: 43.67%;
-  top: 27.25%;
+  left: 832px;
+  top: 248px;
   position: absolute;
 }
 #winifred {
-  left: 22.68%;
-  top: 96.37%;
+  left: 432px;
+  top: 877px;
   position: absolute;
 }
 
 #freida {
-  left: 1.68%;
-  top: 103.3%;
+  left: 32px;
+  top: 940px;
   position: absolute;
 }
 
+#freida {
+  left: 32px;
+  top: 940px;
+  position: absolute;
+}
 #winifred {
-  left: 22.68%;
-  top: 103.3%;
+  left: 432px;
+  top: 940px;
   position: absolute;
 }
 #harrison {
-  left: 43.67%;
-  top: 103.3%;
+  left: 832px;
+  top: 940px;
   position: absolute;
 }
 
 #hawkins {
-  left: 1.68%;
-  top: 128.8%;
+  left: 32px;
+  top: 1172px;
   position: absolute;
 }
 
 #hillenbrand {
-  left: 22.68%;
-  top: 128.8%;
+  left: 432px;
+  top: 1172px;
   position: absolute;
 }
 
 #honors {
-  left: 43.68%;
-  top: 128.8%;
+  left: 832px;
+  top: 1172px;
   position: absolute;
 }
 
 #owen {
-  left: 1.68%;
-  top: 154.06%;
+  left: 32px;
+  top: 1402px;
   position: absolute;
 }
 
 #shreve {
-  left: 22.68%;
-  top: 154.06%;
+  left: 432px;
+  top: 1402px;
   position: absolute;
 }
 
 /*     End positions for housing locations        */
 
 #chatheader {
-  left: 63.52%;
-  top: 0%;
+  left: 1210px;
+  top: 0px;
   border-radius: 4px;
-  width: 35.7%;
+  width: 680px;
   position: absolute;
 }
 
@@ -223,24 +225,24 @@ h2 {
 }
 
 #chatBody {
-  width: 35.9%;
-  height: 154.7%;
+  width: 684px;
+  height: 1408px;
   border-radius: 4px;
   background-color: rgb(230, 230, 230);
   border: 2px solid black;
-  left: 63.94%;
-  top: 8.79%;
+  left: 1218px;
+  top: 80px;
   position: absolute;
 }
 
 #chat {
-  width: 34.91%;
-  height: 73.63%;
+  width: 665px;
+  height: 730px;
   background-color: white;
   border-radius: 6px;
   border: 5px solid rgb(245, 245, 245);
-  left: 64.25%;
-  top: 9.45%;
+  left: 1224px;
+  top: 86px;
   position: absolute;
 }
 .material-icons {
@@ -248,13 +250,13 @@ h2 {
 }
 
 #send-message {
-  left: 67.72%;
-  top: 86.81%;
+  left: 1290px;
+  top: 840px;
   border: 3px solid gold;
-  width: 23.62%;
+  width: 450px;
   background-color: rgb(30, 30, 30);
-  padding-left: 4.2%;
-  padding-right: 2.1%;
+  padding-left: 80px;
+  padding-right: 40px;
   position: absolute;
 }
 
@@ -274,24 +276,24 @@ button {
   font-family: Roboto, sans-serif;
   font-size: 14px;
   font-weight: bold;
-  height: 3.96%;
+  height: 36px;
   margin: 8px 16px;
   outline-color: gold;
   padding: 0px 15px;
 }
 
 #firebaseui-auth-container {
-  left: 42%;
-  top: 107.7%;
-  padding-left: 4.2%;
-  padding-right: 4.2%;
-  width: 73.49%;
+  left: 1200px;
+  top: 980px;
+  padding-left: 80px;
+  padding-right: 80px;
+  width: 600px;
   position: absolute;
 }
 
 #location-name {
   font-size: 32px;
-  width: 41.57%;
+  width: 792px;
   background-color: rgba(255, 240, 190, 0.6);
   border-color: rgba(0, 0, 0, 1);
   border-style: solid;
@@ -303,20 +305,20 @@ button {
   padding-top: 8px;
   padding-bottom: 8px;
   position: absolute;
-  top: 203.52%;
+  top: 1852px;
 }
 
 #image-image {
-  width: 42%;
-  height: 49.45%;
+  width: 800px;
+  height: 450px;
 }
 
 #location-image {
-  width: 11.02%;
-  height: 4.4%;
+  width: 210px;
+  height: 40px;
   position: absolute;
-  left: 15.75%;
-  top: 214.29%;
+  left: 300px;
+  top: 1950px;
 }
 
 .rating {
@@ -325,7 +327,7 @@ button {
   padding-bottom: 4px;
   font-size: 18px;
   position: absolute;
-  left: 16.33%;
+  left: 311px;
 }
 
 .rateNum {
@@ -334,7 +336,7 @@ button {
   font-weight: bold;
   padding-top: 1px;
   padding-bottom: 1px;
-  left: 22.94%;
+  left: 437px;
   position: absolute;
 }
 
@@ -346,17 +348,17 @@ button {
   border-color: rgba(0, 0, 0, 1);
   background-color: gold;
   text-align: center;
-  width: 42%;
+  width: 800px;
   border-radius: 3px;
   border-width: 3px;
-  padding-left: 8.4%;
-  padding-right: 8.4%;
+  padding-left: 160px;
+  padding-right: 160px;
   padding-top: 10px;
   padding-bottom: 10px;
 }
 
 #review-message {
-  width: 25.72%;
+  width: 490px;
 }
 
 #rateinstructions {
@@ -370,32 +372,32 @@ button {
   padding-top: 2px;
   padding-bottom: 4px;
   font-size: 18px;
-  left: 16.32%;
+  left: 311px;
   position: absolute;
 }
 
 .score-box {
-  width: 1.57%;
-  height: 2.64%;
-  left: 23.1%;
+  width: 30px;
+  height: 24x;
+  left: 440px;
   padding-top: 2;
   padding-bottom: 2;
   position: absolute;
 }
 
 #submit-button {
-  width: 7.35%;
-  height: 4.4%;
+  width: 140px;
+  height: 40px;
   background-color: rgba(0, 0, 0, 1);
-  left: 16.33%;
+  left: 311px;
   position: absolute;
 }
 
 #map-image {
-  left: 26.67%;
-  top: 232.2%;
-  width: 23.2%;
-  height: 35.7%;
+  left: 508px;
+  top: 2113px;
+  width: 442px;
+  height: 325px;
   position: absolute;
   border-style: solid;
   border-color: black;
